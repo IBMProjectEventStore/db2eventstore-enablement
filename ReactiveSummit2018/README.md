@@ -1,17 +1,16 @@
-# Reactive Summit 2018
+# Reactive Summit, Montreal, Canada - Oct 22, 2018
 
-This lab will run an end to end application. We are going to review & run a full end to end application that we wrote on top of the IBM Fast Data Platform: A simplistic Weather prediction model
-
-References:
-* [IBM DB2 Event Store](https://www.ibm.com/support/knowledgecenter/en/SSGNPV_1.1.2/eventstore/welcome.html)
-* [IBM Data Science Experience local](https://datascience.ibm.com/local)
-* [Lightbend Fast Data Platform](https://www.lightbend.com/products/fast-data-platform)
+*Introduction*:
+This lab will review & run a end to end application that we wrote on top of the IBM Fast Data Platform. The App implements a Weather prediction model using the following concepts:
+* [The IBM DB2 Event Store](https://www.ibm.com/support/knowledgecenter/en/SSGNPV_1.1.2/eventstore/welcome.html)
+* [The IBM Data Science Experience local](https://datascience.ibm.com/local)
+* [The Lightbend Fast Data Platform](https://www.lightbend.com/products/fast-data-platform)
 * [Apache Spark](http://spark.apache.org)
-* [Apache Kafka](http://kafka.apache.org),
+* [Apache Kafka](http://kafka.apache.org)
 * [Akka](https://akka.io/)
 * [Grafana](https://grafana.com/)
 
-## Sample Use Case
+## Lab Use Case
 
 _I need fast access to real time data to analyze it, execute machine learning and leverage these models for predictive analytics._
 
@@ -25,13 +24,13 @@ _I need fast access to real time data to analyze it, execute machine learning an
 
 ## IBM Db2 Event Store Reference Architecture
 
-![](diagrams/db2eventstore.png)
+![](db2eventstore.png)
 
 ## Reference Architecture
 
 Final architecture of the implementation looks as follows
 
-![](diagrams/overallArchitecture.png)
+![](overallArchitecture.png)
 
 This lab will present the following technology:
 - Akka is an advanced toolkit and message-driven runtime based on the Actor Model that helps development teams build the right foundation for successful microservices architectures and streaming data pipelines.
