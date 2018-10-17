@@ -11,7 +11,7 @@ This lab will review & run a end to end application written on top of the IBM Fa
 * [Grafana](https://grafana.com/)
 
 ##### Demo
-<a href="https://youtu.be/q9LmWtZAAdU" target="_blank"><img src="http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg" width="240" height="180" border="10" /></a>
+<a href="https://youtu.be/q9LmWtZAAdU" target="_blank"><img src="verallArchitecture.png" width="800" height="360" border="10" /></a>
 
 ##### Tools required
 
