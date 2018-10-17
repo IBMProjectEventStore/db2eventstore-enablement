@@ -21,6 +21,7 @@ This lab will review & run a end to end application written on top of the IBM Fa
 * Git
 * IBM Db2 Event Store
 * IntelliJ
+* Grafana
 
 ---
 
@@ -70,6 +71,7 @@ This lab presents the following technology:
 
 #####  Installing the IBM Db2 Event Store
 ```bash
+
 ```
 
 #####  Cleaning up the IBM Db2 Event Store metadata
@@ -79,6 +81,7 @@ rm -rf zookeeper alluxio ibm
 docker stop $(docker ps -aq)
 docker rm $(docker ps -aq)
 ```
+
 ---
 
 ## Notebooks
@@ -91,8 +94,9 @@ docker rm $(docker ps -aq)
 * Understand the IBM Db2 Event Store Scala API
 
 ##### Lab Assignments
-* Run *Introduction to IBM Db2 Event Store Scala API*
-* Run *Analyze customers' purchasing data in real-time*
+* In the IBM Db2 Event Store
+* Run the Notebook *Introduction to IBM Db2 Event Store Scala API*
+* Run the Notebook *Analyze customers' purchasing data in real-time*
 _Make sure to allocate enough Docker Memory_
 
 ---
@@ -109,7 +113,9 @@ _Make sure to allocate enough Docker Memory_
 * Understand how to stream data into the IBM Db2 Event Store with Kafka
 
 ##### Lab Assignment
-https://github.com/IBMProjectEventStore/db2eventstore-kafka
+* Open a Terminal window
+* Follow the direction from the following GIT repo on how to setup
+** https://github.com/IBMProjectEventStore/db2eventstore-kafka
 
 ---
 
@@ -129,14 +135,17 @@ https://github.com/IBMProjectEventStore/db2eventstore-kafka
 
 ##### Lab Assignment
 
-* Navigating the Catalog & Data
+* Open a Terminal window
+* SBT ingest with kafka into the IBM Db2 Event Store (with the generator)
+* Run the following curl commands
+** Navigating the Catalog & Data
 ```bash
 curl -X POST -H "Content-Type: application/json" -H "authorization: Bearer token" 'http://0.0.0.0:9991/com/ibm/event/api/v1/init/engine?engine=173.19.0.1:1100&rContext=Desktop'
 curl -X GET -H "Content-Type: application/json" -H "authorization: Bearer token" http://0.0.0.0:9991/com/ibm/event/api/v1/oltp/databases
 curl -X GET -H "Content-Type: application/json" -H "authorization: Bearer token" http://0.0.0.0:9991/com/ibm/event/api/v1/oltp/tables?databaseName=TESTDB
 ```
 
-* Running Spark Query
+** Running Spark Query
 ```bash
 curl -k -i -X POST -H "Content-Type: application/json" -H "authorization: Bearer token" --data "{\"sql\": \"select * from ReviewTable\"}" "http://0.0.0.0:9991/com/ibm/event/api/v1/spark/sql?databaseName=TESTDB&tableName=ReviewTable&format=json"
 ```
@@ -161,3 +170,41 @@ TBD
 ##### Lab Assignment
 * Kafka Lab Assignment
 * https://github.com/IBMProjectEventStore/db2eventstore-grafana
+
+---
+
+## KillrWeather Application without ML
+
+##### Tools 
+* Terminal Window
+* Curl
+* IBM Db2 Event Store
+* IntelliJ
+
+##### Objectives
+* Understand the end to end application
+
+##### Reference
+* [IBM DB2 Event Store Documentation](https://www.ibm.com/support/knowledgecenter/en/SSGNPV_1.1.2/eventstore/welcome.html)
+* [IBM DB2 Event Store Rest API](https://www.ibm.com/support/knowledgecenter/en/SSGNPV_1.1.2/eventstore/develop/rest-api.html)
+
+##### Lab Assignment
+
+---
+
+## KillrWeather Application with ML
+
+##### Tools 
+* Terminal Window
+* Curl
+* IBM Db2 Event Store
+* IntelliJ
+
+##### Objectives
+* Understand the end to end application
+
+##### Reference
+* [IBM DB2 Event Store Documentation](https://www.ibm.com/support/knowledgecenter/en/SSGNPV_1.1.2/eventstore/welcome.html)
+* [IBM DB2 Event Store Rest API](https://www.ibm.com/support/knowledgecenter/en/SSGNPV_1.1.2/eventstore/develop/rest-api.html)
+
+##### Lab Assignment
