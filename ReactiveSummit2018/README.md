@@ -1,7 +1,7 @@
 # Reactive Summit, Montreal, Canada - Oct 22, 2018
 
-*Introduction*:
-This lab will review & run a end to end application that we wrote on top of the IBM Fast Data Platform. The App implements a Weather prediction model using the following concepts:
+##### Introduction
+This lab will review & run a end to end application written on top of the IBM Fast Data Platform. The App implements a Weather prediction model using the following concepts:
 * [The IBM DB2 Event Store](https://www.ibm.com/support/knowledgecenter/en/SSGNPV_1.1.2/eventstore/welcome.html)
 * [The IBM Data Science Experience local](https://datascience.ibm.com/local)
 * [The Lightbend Fast Data Platform](https://www.lightbend.com/products/fast-data-platform)
@@ -9,6 +9,14 @@ This lab will review & run a end to end application that we wrote on top of the 
 * [Apache Kafka](http://kafka.apache.org)
 * [Akka](https://akka.io/)
 * [Grafana](https://grafana.com/)
+
+##### Demo
+<a href="https://youtu.be/q9LmWtZAAdU" target="_blank"><img src="http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg" width="240" height="180" border="10" /></a>
+
+##### Tools required
+
+---
+
 
 ## Lab Use Case
 
