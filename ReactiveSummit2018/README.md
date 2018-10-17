@@ -10,30 +10,37 @@ This lab will review & run a end to end application written on top of the IBM Fa
 * [Akka](https://akka.io/)
 * [Grafana](https://grafana.com/)
 
-##### Demo
+##### YouTube Video Demo
 
 ![](overallArchitecture.png)(https://youtu.be/q9LmWtZAAdU "Reactive Summit 2018 Demo")
 
 ##### Tools required
 
----
+* SBT
+* Terminal Window
+* Git
+* IBM Db2 Event Store
+* IntelliJ
 
+---
 
 ## Lab Use Case
 
 _I need fast access to real time data to analyze it, execute machine learning and leverage these models for predictive analytics._
 
-## Demo
+---
 
-**TBD** Add youtube video 
+## Presentation of the IBM Db2 Event Store & Fast Data
 
-## Presentation of the IBM Db2 Event Store
+![Fast Data Ingest & Analytics Oct 22](Fast Data Ingest & Analytics Oct 22.ppt)
 
-**TBD** Add PPT
+---
 
 ## IBM Db2 Event Store Reference Architecture
 
 ![](db2eventstore.png)
+
+---
 
 ## Reference Architecture
 
@@ -48,12 +55,16 @@ This lab will present the following technology:
 - A machine learning model that is trained on the incoming data so that it be later used to score the in-flight data in order to predict temperatures
 - A model serving component that receives the online model and does the scoring. Predicted values are then associated with their incoming Event
 
+---
+
 ## Prerequisites
 
 * The IBM Db2 Event Store Developer Edition 1.1.4 (requires Docker)
 * IntelliJ CE
 * SBT
 * Docker Version 18.06.1-ce-mac73 (26764)
+
+---
 
 ## Installing IBM Db2 Event Store
 
@@ -68,34 +79,39 @@ rm -rf zookeeper alluxio ibm
 docker stop $(docker ps -aq)
 docker rm $(docker ps -aq)
 ```
+---
 
 ## Notebooks
 
-*Tools*: 
+##### Tools
 * IBM Db2 Event Store
 
-*Objectives*: 
+##### Objectives
 * Understand how to use a Jupyter to interact with the IBM Db2 Event Store
 * Understand the IBM Db2 Event Store Scala API
 
-*Lab*:
-* Running *Introduction to IBM Db2 Event Store Scala API*
-* Running *Analyze customers' purchasing data in real-time*
+##### Lab Assignments
+* Run *Introduction to IBM Db2 Event Store Scala API*
+* Run *Analyze customers' purchasing data in real-time*
 _Make sure to allocate enough Docker Memory_
+
+---
 
 ## Kafka Ingest
 
-*Tools*: 
+##### Tools 
 * SBT
 * Terminal Window
 * Git
 * IBM Db2 Event Store
 
-*Objectives*:
+##### bjectives
 * Understand how to stream data into the IBM Db2 Event Store with Kafka
 
-*Lab*:
+##### Lab Assignment
 https://github.com/IBMProjectEventStore/db2eventstore-kafka
+
+---
 
 ## REST API
 
