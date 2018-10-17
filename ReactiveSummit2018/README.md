@@ -11,7 +11,8 @@ This lab will review & run a end to end application written on top of the IBM Fa
 * [Grafana](https://grafana.com/)
 
 ##### Demo
-<a href="https://youtu.be/q9LmWtZAAdU" target="_blank"><img src="verallArchitecture.png" width="800" height="360" border="10" /></a>
+
+![](overallArchitecture.png)(https://youtu.be/q9LmWtZAAdU "Reactive Summit 2018 Demo")
 
 ##### Tools required
 
