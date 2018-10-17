@@ -32,7 +32,7 @@ _I need fast access to real time data to analyze it, execute machine learning an
 
 ## Presentation of the IBM Db2 Event Store & Fast Data
 
-![Fast Data Ingest & Analytics Oct 22](Fast Data Ingest & Analytics Oct 22.ppt)
+![Fast Data Ingest & Analytics Oct 22](FastDataIngestAnalyticsOct22.pptx)
 
 ---
 
