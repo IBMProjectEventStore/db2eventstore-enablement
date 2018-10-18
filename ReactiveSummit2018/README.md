@@ -1,7 +1,7 @@
 # Reactive Summit, Montreal, Canada - Oct 22, 2018
 
 ##### Introduction
-This lab will review & run a end to end application written on top of the IBM Fast Data Platform. The App implements a Weather prediction model using the following concepts:
+This lab will review & run a end to end application written on top of the IBM Db2 Event Store. The App implements a Weather prediction model using the following concepts:
 * [The IBM DB2 Event Store](https://www.ibm.com/support/knowledgecenter/en/SSGNPV_1.1.2/eventstore/welcome.html)
 * [The IBM Data Science Experience local](https://datascience.ibm.com/local)
 * [The Lightbend Fast Data Platform](https://www.lightbend.com/products/fast-data-platform)
@@ -90,14 +90,16 @@ docker rm $(docker ps -aq)
 * IBM Db2 Event Store
 
 ##### Objectives
-* Understand how to use a Jupyter to interact with the IBM Db2 Event Store
+* Understand how to use a Jupyter Notebook to interact with the IBM Db2 Event Store
 * Understand the IBM Db2 Event Store Scala API
 
 ##### Lab Assignments
+```bash
 * In the IBM Db2 Event Store
 * Run the Notebook *Introduction to IBM Db2 Event Store Scala API*
 * Run the Notebook *Analyze customers' purchasing data in real-time*
 _Make sure to allocate enough Docker Memory_
+```
 
 ---
 
@@ -112,10 +114,21 @@ _Make sure to allocate enough Docker Memory_
 ##### Objectives
 * Understand how to stream data into the IBM Db2 Event Store with Kafka
 
+##### Installing Sbt 0.13.16
+```bash
+sbt sbt-version
+...
+...
+```
+
 ##### Lab Assignment
+```bash
 * Open a Terminal window
 * Follow the direction from the following GIT repo on how to setup
-** https://github.com/IBMProjectEventStore/db2eventstore-kafka
+* https://github.com/IBMProjectEventStore/db2eventstore-kafka
+sbt "eventStream/run -localBroker true -kafkaBroker localhost:9092 -topic estopic -eventStore localhost:1100 -database TESTDB -user admin  -password password -metadata ReviewTable -streamingInterval 5000 -batchSize 10"
+sbt "dataLoad/run -localBroker true -kafkaBroker localhost:9092 -tableName ReviewTable -topic estopic -group group -metadata sensor -metadataId 238 -batchSize 10"
+```
 
 ---
 
@@ -134,19 +147,17 @@ _Make sure to allocate enough Docker Memory_
 * [IBM DB2 Event Store Rest API](https://www.ibm.com/support/knowledgecenter/en/SSGNPV_1.1.2/eventstore/develop/rest-api.html)
 
 ##### Lab Assignment
-
+```bash
 * Open a Terminal window
 * SBT ingest with kafka into the IBM Db2 Event Store (with the generator)
 * Run the following curl commands
-** Navigating the Catalog & Data
-```bash
+
+* Navigating the Catalog & Data:
 curl -X POST -H "Content-Type: application/json" -H "authorization: Bearer token" 'http://0.0.0.0:9991/com/ibm/event/api/v1/init/engine?engine=173.19.0.1:1100&rContext=Desktop'
 curl -X GET -H "Content-Type: application/json" -H "authorization: Bearer token" http://0.0.0.0:9991/com/ibm/event/api/v1/oltp/databases
 curl -X GET -H "Content-Type: application/json" -H "authorization: Bearer token" http://0.0.0.0:9991/com/ibm/event/api/v1/oltp/tables?databaseName=TESTDB
-```
 
-** Running Spark Query
-```bash
+* Running Spark Query:
 curl -k -i -X POST -H "Content-Type: application/json" -H "authorization: Bearer token" --data "{\"sql\": \"select * from ReviewTable\"}" "http://0.0.0.0:9991/com/ibm/event/api/v1/spark/sql?databaseName=TESTDB&tableName=ReviewTable&format=json"
 ```
 
@@ -163,13 +174,32 @@ curl -k -i -X POST -H "Content-Type: application/json" -H "authorization: Bearer
 ##### Objectives
 * Understand how to visualize the ingested data
 
-##### Installing Grafana
-
-TBD
+##### Reference
+[Installing Grafana](https://grafana.com/grafana/download?platform=mac)
+[Grafana Data Source Git Repo](https://github.com/IBMProjectEventStore/db2eventstore-grafana)
 
 ##### Lab Assignment
-* Kafka Lab Assignment
-* https://github.com/IBMProjectEventStore/db2eventstore-grafana
+```bash
+- Grafana setup
+brew update 
+brew install grafana
+brew services restart grafana
+
+* Check Grafana:
+http://localhost:3000 [admin/admin]
+
+* Install IBM Db2 Event Store plugin:
+mkdir -p /usr/local/var/lib/grafana/plugins/db2-event-store
+mv db2-event-store-grafana.tar /usr/local/var/lib/grafana/plugins/db2-event-store
+cd /usr/local/var/lib/grafana/plugins/db2-event-store
+tar -zxvf db2-event-store-grafana.tar
+brew services restart grafana
+
+http://localhost:3000 [admin/admin]
+Add a Db2 Event Store Data Source
+
+ 
+```
 
 ---
 
@@ -189,6 +219,9 @@ TBD
 * [IBM DB2 Event Store Rest API](https://www.ibm.com/support/knowledgecenter/en/SSGNPV_1.1.2/eventstore/develop/rest-api.html)
 
 ##### Lab Assignment
+
+```bash
+```
 
 ---
 
