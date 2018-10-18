@@ -1,7 +1,7 @@
 # Reactive Summit, Montreal, Canada - Oct 22, 2018
 
 ##### Introduction
-This lab will review & run a end to end application written on top of the IBM Db2 Event Store. The App implements a Weather prediction model using the following concepts:
+This lab will review & run an end to end application written on top of the IBM Db2 Event Store. The App implements a Weather prediction model using the following concepts:
 * [The IBM DB2 Event Store](https://www.ibm.com/support/knowledgecenter/en/SSGNPV_1.1.2/eventstore/welcome.html)
 * [The IBM Data Science Experience local](https://datascience.ibm.com/local)
 * [The Lightbend Fast Data Platform](https://www.lightbend.com/products/fast-data-platform)
@@ -16,12 +16,13 @@ This lab will review & run a end to end application written on top of the IBM Db
 
 ##### Tools required
 
-* SBT
-* Terminal Window
+* SBT 0.13.16
+* MacOS Terminal Window
 * Git
-* IBM Db2 Event Store
+* IBM Db2 Event Store 1.1.4
 * IntelliJ
-* Grafana
+* Grafana 5.3.1
+* Docker 18.06.1-ce
 
 ---
 
@@ -76,10 +77,11 @@ This lab presents the following technology:
 
 #####  Cleaning up the IBM Db2 Event Store metadata
 ```bash
-cd Library/Application\ Support/ibm-es-desktop
-rm -rf zookeeper alluxio ibm
+Stop IBM Db2 Event Store Dev. Edition 1.1.4
 docker stop $(docker ps -aq)
 docker rm $(docker ps -aq)
+cd Library/Application\ Support/ibm-es-desktop
+rm -rf zookeeper alluxio ibm
 ```
 
 ---
@@ -101,6 +103,18 @@ docker rm $(docker ps -aq)
 _Make sure to allocate enough Docker Memory_
 ```
 
+##### Update internal component
+```bash
+*Stop IBM Db2 Event Store Dev. Edition 1.1.4*
+docker load -i bluspark-ci-dm-backend_2018-10-17T18.31.29Z.tar.gz
+docker tag bluspark-ci-dm-backend:2018-10-17T18.31.29Z eventstore/dm-backend:1.1.4
+docker stop $(docker ps -aq)
+docker rm $(docker ps -aq)
+cd Library/Application\ Support/ibm-es-desktop
+rm -rf zookeeper alluxio ibm
+*Start IBM Db2 Event Store Dev. Edition 1.1.4*
+```
+
 ---
 
 ## Kafka Ingest
@@ -114,6 +128,10 @@ _Make sure to allocate enough Docker Memory_
 ##### Objectives
 * Understand how to stream data into the IBM Db2 Event Store with Kafka
 
+##### References
+[Installing sbt](...)
+[Kafka Data Source Git Repo](https://github.com/IBMProjectEventStore/db2eventstore-kafka)
+
 ##### Installing Sbt 0.13.16
 ```bash
 sbt sbt-version
@@ -126,7 +144,7 @@ sbt sbt-version
 * Open a Terminal window
 * Follow the direction from the following GIT repo on how to setup
 * https://github.com/IBMProjectEventStore/db2eventstore-kafka
-sbt "eventStream/run -localBroker true -kafkaBroker localhost:9092 -topic estopic -eventStore localhost:1100 -database TESTDB -user admin  -password password -metadata ReviewTable -streamingInterval 5000 -batchSize 10"
+sbt "eventStream/run -localBroker true -kafkaBroker localhost:9092 -topic estopic -eventStore localhost:1100 -database TESTDB -user admin -metadata sensor -password password -metadata ReviewTable -streamingInterval 5000 -batchSize 10"
 sbt "dataLoad/run -localBroker true -kafkaBroker localhost:9092 -tableName ReviewTable -topic estopic -group group -metadata sensor -metadataId 238 -batchSize 10"
 ```
 
@@ -207,21 +225,47 @@ Add a Db2 Event Store Data Source
 
 ##### Tools 
 * Terminal Window
+* SBT
 * Curl
 * IBM Db2 Event Store
 * IntelliJ
 
 ##### Objectives
-* Understand the end to end application
+* Understand & Run the end to end application
 
 ##### Reference
 * [IBM DB2 Event Store Documentation](https://www.ibm.com/support/knowledgecenter/en/SSGNPV_1.1.2/eventstore/welcome.html)
 * [IBM DB2 Event Store Rest API](https://www.ibm.com/support/knowledgecenter/en/SSGNPV_1.1.2/eventstore/develop/rest-api.html)
+* [KillrWeather Git Repo](https://github.com/lightbend/fdp-killrweather-event-store)
 
-##### Lab Assignment
+##### Lab Assignments
 
 ```bash
+- KillRWeather Repo Setup
+git clone git@github.com:lightbend/fdp-killrweather-event-store.git
+* Understand the module structure
+
+- IntelliJ Setup
+* Import Project
+* Select the project root directory
+* Select sbt as the project type
+* Use the default settings for sbt. Use JDK 1.8 if it's not shown as the default.
+
+- Compile the code
+* Open a terminal window in IntelliJ
+sbt clean
+sbt compile
+
+* Run the sample
 ```
+
+**Data ingest**
+![](dataIngest.png)
+
+**Streaming App**
+![](streamingApp.png)
+
+
 
 ---
 
@@ -241,3 +285,16 @@ Add a Db2 Event Store Data Source
 * [IBM DB2 Event Store Rest API](https://www.ibm.com/support/knowledgecenter/en/SSGNPV_1.1.2/eventstore/develop/rest-api.html)
 
 ##### Lab Assignment
+
+---
+
+## Cluster demo
+
+##### Tools 
+* IBM Db2 Event Store Production - 3 nodes
+
+##### Objectives
+* Understand a production environment
+
+##### Reference
+* [IBM DB2 Event Store Documentation](https://www.ibm.com/support/knowledgecenter/en/SSGNPV_1.1.2/eventstore/welcome.html)
