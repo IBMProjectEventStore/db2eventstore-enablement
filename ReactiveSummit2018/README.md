@@ -20,7 +20,7 @@ This lab will review & run an end to end application written on top of the IBM D
 * MacOS Terminal Window
 * Git
 * IBM Db2 Event Store 1.1.4
-* IntelliJ
+* IntelliJ 2017.3
 * Grafana 5.3.1
 * Docker 18.06.1-ce
 
@@ -51,7 +51,7 @@ Final architecture of the implementation looks as follows
 ![](overallArchitecture.png)
 
 This lab presents the following technology:
-- **Akka* is an advanced toolkit and message-driven runtime based on the Actor Model that helps development teams build the right foundation for successful microservices architectures and streaming data pipelines.
+- **Akka** is an advanced toolkit and message-driven runtime based on the Actor Model that helps development teams build the right foundation for successful microservices architectures and streaming data pipelines.
 - **Apache Kafka** provides scalable, reliable, and durable short-term storage of data, organized into topics (like traditional message queues), which can be consumed by downstream applications.
 - We have an application named KillrWeather that will process those messages and stream them to the **IBM Db2 Event Store** where they can be visualized graphically in Grafana
 - A **machine learning** model that is trained on the incoming data so that it be later used to score the in-flight data in order to predict temperatures
@@ -72,18 +72,35 @@ This lab presents the following technology:
 
 #####  Installing the IBM Db2 Event Store
 ```bash
+* Get the files from the USB drive
+Perform the following step so you can skip the download of 14GB Jupter Notebook by placing the gzip file (es_desktop.tar.gz) in following location.
+
+** On Mac**
+* Download https://github.com/IBMProjectEventStore/EventStore-DeveloperEdition/releases/download/1.1.4/IBM.Db2.Event.Store.-.Developer.Edition-1.1.4.dmg
+* wget 
+* cp es_desktop.tar.gz ~/Library/Application\ Support/ibm-dsx-desktop
+
+On Windows:
+Windows Explorer
+C:\Users\Administrator\AppData\Roaming in Windows Explorer and copy the gzip file to ibm-dsx-desktop folder.
+_Caution: hidden folder_
+_Press "Alt" button and under "Tools" -> "Folder Options" click on "View" tab and select "Show hidden files, folders and drives" radio button_
+* wget
+copy es_desktop.tar.gz C:\Users\Administrator\AppData\Roaming\ibm-dsx-desktop
 
 ```
 
 #####  Cleaning up the IBM Db2 Event Store metadata
-```bash
 Stop IBM Db2 Event Store Dev. Edition 1.1.4
+```bash
 docker stop $(docker ps -aq)
 docker rm $(docker ps -aq)
-cd Library/Application\ Support/ibm-es-desktop
+cd ~/Library/Application\ Support/ibm-es-desktop
 rm -rf zookeeper alluxio ibm
 ```
 
+---
+Understanding Notebooks, IBM Db2 Event Store and its Scala Client API
 ---
 
 ## Notebooks
@@ -95,26 +112,30 @@ rm -rf zookeeper alluxio ibm
 * Understand how to use a Jupyter Notebook to interact with the IBM Db2 Event Store
 * Understand the IBM Db2 Event Store Scala API
 
+##### References
+[Db2 Event Store Scala API](https://www.ibm.com/support/knowledgecenter/en/SSGNPV_1.1.2/eventstore/develop/dev-guide.html)
+
 ##### Lab Assignments
 ```bash
 * In the IBM Db2 Event Store
 * Run the Notebook *Introduction to IBM Db2 Event Store Scala API*
+** Run all the Cells
+** Review of the Event Store Scala API
 * Run the Notebook *Analyze customers' purchasing data in real-time*
+** Includes a UI cell, run it for a few seconds
+** Run the Notebook
 _Make sure to allocate enough Docker Memory_
 ```
 
-##### Update internal component
+##### Lab Assignment
 ```bash
-*Stop IBM Db2 Event Store Dev. Edition 1.1.4*
-docker load -i bluspark-ci-dm-backend_2018-10-17T18.31.29Z.tar.gz
-docker tag bluspark-ci-dm-backend:2018-10-17T18.31.29Z eventstore/dm-backend:1.1.4
-docker stop $(docker ps -aq)
-docker rm $(docker ps -aq)
-cd Library/Application\ Support/ibm-es-desktop
-rm -rf zookeeper alluxio ibm
-*Start IBM Db2 Event Store Dev. Edition 1.1.4*
+* Stop the kernel for the running notebooks
+* Create a new Scala notebook and create a new table named ReactiveSummit
+* Drop that table
 ```
 
+---
+Understanding Kafka & IBM Db2 Event Store
 ---
 
 ## Kafka Ingest
@@ -129,14 +150,14 @@ rm -rf zookeeper alluxio ibm
 * Understand how to stream data into the IBM Db2 Event Store with Kafka
 
 ##### References
-[Installing sbt](...)
+[Installing sbt](https://www.scala-sbt.org/download.html)
 [Kafka Data Source Git Repo](https://github.com/IBMProjectEventStore/db2eventstore-kafka)
 
 ##### Installing Sbt 0.13.16
 ```bash
-sbt sbt-version
-...
-...
+* sbt supplied with archive or install on your own
+./bin/sbt sbt-version
+* Should be at 0.13.16 level 
 ```
 
 ##### Lab Assignment
@@ -148,6 +169,8 @@ sbt "eventStream/run -localBroker true -kafkaBroker localhost:9092 -topic estopi
 sbt "dataLoad/run -localBroker true -kafkaBroker localhost:9092 -tableName ReviewTable -topic estopic -group group -metadata sensor -metadataId 238 -batchSize 10"
 ```
 
+---
+Understanding REST & IBM Db2 Event Store
 ---
 
 ## REST API
@@ -215,10 +238,11 @@ brew services restart grafana
 
 http://localhost:3000 [admin/admin]
 Add a Db2 Event Store Data Source
-
  
 ```
 
+---
+End to End Application with KillrWeather
 ---
 
 ## KillrWeather Application without ML
@@ -265,8 +289,13 @@ sbt compile
 **Streaming App**
 ![](streamingApp.png)
 
+```bash
+* Stop the ingest
+* Run a REST API call to find out how many rows have been ingested in the table "raw_weather_data"
+```
 
-
+---
+Understanding Machine Learning
 ---
 
 ## KillrWeather Application with ML
@@ -278,23 +307,45 @@ sbt compile
 * IntelliJ
 
 ##### Objectives
-* Understand the end to end application
+* Understand ML
 
 ##### Reference
-* [IBM DB2 Event Store Documentation](https://www.ibm.com/support/knowledgecenter/en/SSGNPV_1.1.2/eventstore/welcome.html)
-* [IBM DB2 Event Store Rest API](https://www.ibm.com/support/knowledgecenter/en/SSGNPV_1.1.2/eventstore/develop/rest-api.html)
+* [Spark ML](https://spark.apache.org/docs/1.2.2/ml-guide.html)
+* [Jean-Francois Puget Feedback loop](https://www.kdnuggets.com/2017/06/practical-guide-machine-learning-understand-differentiate-apply.html)
+
 
 ##### Lab Assignment
+```bash
+* In IBM Db2 Event Store Desktop
+** Add Notebooks
+** Select "Weather+Prediction+Model.ipynb"
+*** We won't have the SPSS libraries in today's environment, but this is a good sample to have
+** Select "Weather+Spark+ML.ipynb"
+*** Run the cells
+** Understand the different between training_data & test_data
+```
 
 ---
+Understanding Scoring
+---
 
-## Cluster demo
+## KillrWeather Application with ML and Feedback Loop
 
 ##### Tools 
-* IBM Db2 Event Store Production - 3 nodes
+* Terminal Window
+* Curl
+* IBM Db2 Event Store
+* IntelliJ
 
 ##### Objectives
-* Understand a production environment
+* Understand Scoring
 
-##### Reference
-* [IBM DB2 Event Store Documentation](https://www.ibm.com/support/knowledgecenter/en/SSGNPV_1.1.2/eventstore/welcome.html)
+##### Lab Assignment
+```bash
+* Which table will carry the new prediction with any given Event
+* Run the sample
+** In IntelliJ, restart Ingest
+** In IntelliJ, run the ModelServer & ModelListener
+curl -X POST -d {\"wsid\":\"72202012839\",\"pmml\":\"\<?xml version='1.0' ?\>\<PMML version='4.3' xmlns='http://www.dmg.org/PMML-4_3' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://www.dmg.org/PMML-4_3 http://www.dmg.org/v4-3/pmml-4-3.xsd'><Header copyright='(c) Copyright IBM Corp. 2011, 2015' description='linear engine'><Application name='Analytic Framework' version='3.0'></Application><Timestamp>Tue Mar 13 23:18:39 2018</Timestamp></Header><DataDictionary numberOfFields='13'><DataField name='wsid' displayName='wsid' optype='categorical' dataType='string'><Value value='722020:12839' property='valid'></Value></DataField><DataField name='year' displayName='year' optype='continuous' dataType='integer'></DataField><DataField name='month' displayName='month' optype='continuous' dataType='integer'></DataField><DataField name='day' displayName='day' optype='continuous' dataType='integer'></DataField><DataField name='ts' displayName='ts' optype='continuous' dataType='integer'></DataField><DataField name='high' displayName='high' optype='continuous' dataType='double'></DataField><DataField name='low' displayName='low' optype='continuous' dataType='double'></DataField><DataField name='mean' displayName='mean' optype='continuous' dataType='double'></DataField><DataField name='variance' displayName='variance' optype='continuous' dataType='double'></DataField><DataField name='stdev' displayName='stdev' optype='continuous' dataType='double'></DataField><DataField name='day-1' displayName='day-1' optype='continuous' dataType='double'></DataField><DataField name='day-2' displayName='day-2' optype='continuous' dataType='double'></DataField><DataField name='day-3' displayName='day-3' optype='continuous' dataType='double'></DataField></DataDictionary><GeneralRegressionModel modelType='generalLinear' targetVariableName='mean' algorithmName='LE' functionName='regression'><Extension extender='spss.com' name='modelID' value='0'></Extension><MiningSchema><MiningField name='day-1'></MiningField><MiningField name='day-2'></MiningField><MiningField name='day-3'></MiningField><MiningField name='mean' usageType='predicted'></MiningField></MiningSchema><ModelStats><UnivariateStats field='mean'><Anova><AnovaRow degreesOfFreedom='4.0' fValue='3786.201363731769' meanOfSquares='7400.271882512297' pValue='0.0' sumOfSquares='29601.08753004919' type='Model'></AnovaRow><AnovaRow degreesOfFreedom='2430.0' meanOfSquares='1.9545373242426847' sumOfSquares='4749.525697909724' type='Error'></AnovaRow><AnovaRow degreesOfFreedom='2434.0' sumOfSquares='34350.613227958915' type='Total'></AnovaRow></Anova></UnivariateStats><UnivariateStats field='mean'><Counts totalFreq='2435.0'></Counts><NumericInfo maximum='29.583333333333332' mean='23.96204441248872' minimum='4.354166666666667' standardDeviation='3.7567038531902854'></NumericInfo></UnivariateStats><UnivariateStats field='day-1'><Counts totalFreq='2435.0'></Counts><NumericInfo maximum='29.6' mean='23.971457905544145' minimum='4.4' standardDeviation='3.7602528327004956'></NumericInfo></UnivariateStats><UnivariateStats field='day-2'><Counts totalFreq='2435.0'></Counts><NumericInfo maximum='29.6' mean='23.972854209445604' minimum='4.4' standardDeviation='3.7385165539743586'></NumericInfo></UnivariateStats><UnivariateStats field='day-3'><Counts totalFreq='2435.0'></Counts><NumericInfo maximum='29.6' mean='23.970718685831645' minimum='4.4' standardDeviation='3.714322046776944'></NumericInfo></UnivariateStats></ModelStats><Targets><Target field='mean' optype='continuous'></Target></Targets><ParameterList><Parameter label='Intercept' name='P0000001'></Parameter><Parameter label='day-1' name='P0000002'></Parameter><Parameter label='day-2' name='P0000003'></Parameter><Parameter label='day-2 * day-2' name='P0000004'></Parameter><Parameter label='day-3 * day-3' name='P0000005'></Parameter></ParameterList><CovariateList><Predictor name='day-1'></Predictor><Predictor name='day-2'></Predictor><Predictor name='day-3'></Predictor></CovariateList><PPMatrix><PPCell parameterName='P0000002' predictorName='day-1' value='1'></PPCell><PPCell parameterName='P0000003' predictorName='day-2' value='1'></PPCell><PPCell parameterName='P0000004' predictorName='day-2' value='2'></PPCell><PPCell parameterName='P0000005' predictorName='day-3' value='2'></PPCell></PPMatrix><ParamMatrix><PCell beta='6.613303128878097' df='1' parameterName='P0000001'></PCell><PCell beta='0.9872189908600112' df='1' parameterName='P0000002'></PCell><PCell beta='-0.524053288645944' df='1' parameterName='P0000003'></PCell><PCell beta='0.008062367469378615' df='1' parameterName='P0000004'></PCell><PCell beta='0.002550459044802118' df='1' parameterName='P0000005'></PCell></ParamMatrix></GeneralRegressionModel></PMML>\"} http://localhost:5000
+* Query that table in REST to see the prediction
+```
