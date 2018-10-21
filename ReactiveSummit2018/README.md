@@ -70,24 +70,33 @@ This lab presents the following technology:
 
 ## Installing IBM Db2 Event Store
 
+##### References
+[IBM Db2 Dev Edition](https://www.ibm.com/support/knowledgecenter/en/SSGNPV_1.1.2/eventstore/desktop/welcome.html)
+
+##### Increase Docker CPU/Mem
+* 6 CPU / 8 GB
+
 #####  Installing the IBM Db2 Event Store
 ```bash
-* Get the files from the USB drive
-Perform the following step so you can skip the download of 14GB Jupter Notebook by placing the gzip file (es_desktop.tar.gz) in following location.
+* *Lab*
+** Get the files from the USB drive
+* *Online*
+** Download the correct file & install
+*** https://github.com/IBMProjectEventStore/EventStore-DeveloperEdition/releases/download/1.1.4
 
-** On Mac**
-* Download https://github.com/IBMProjectEventStore/EventStore-DeveloperEdition/releases/download/1.1.4/IBM.Db2.Event.Store.-.Developer.Edition-1.1.4.dmg
-* wget 
-* cp es_desktop.tar.gz ~/Library/Application\ Support/ibm-dsx-desktop
+** Lab - On MacOS **
+mkdir ~/Library/Application\ Support/ibm-es-desktop
+cp es_desktop.tar.gz ~/Library/Application\ Support/ibm-es-desktop
 
-On Windows:
+** Lab - On Windows **
 Windows Explorer
-C:\Users\Administrator\AppData\Roaming in Windows Explorer and copy the gzip file to ibm-dsx-desktop folder.
+C:\Users\Administrator\AppData\Roaming in Windows Explorer and copy the gzip file to ibm-es-desktop folder.
 _Caution: hidden folder_
 _Press "Alt" button and under "Tools" -> "Folder Options" click on "View" tab and select "Show hidden files, folders and drives" radio button_
-* wget
-copy es_desktop.tar.gz C:\Users\Administrator\AppData\Roaming\ibm-dsx-desktop
+copy es_desktop.tar.gz C:\Users\Administrator\AppData\Roaming\ibm-es-desktop
 
+** Lab - MacOS & Windows **
+* Start the installer (dmg or exe) and follow the instructions
 ```
 
 #####  Cleaning up the IBM Db2 Event Store metadata
@@ -121,9 +130,9 @@ Understanding Notebooks, IBM Db2 Event Store and its Scala Client API
 * Run the Notebook *Introduction to IBM Db2 Event Store Scala API*
 ** Run all the Cells
 ** Review of the Event Store Scala API
-* Run the Notebook *Analyze customers' purchasing data in real-time*
-** Includes a UI cell, run it for a few seconds
-** Run the Notebook
+** Understanding the Event Store SparkSQL query architecture
+** Understanding querying the Db2 Event Store with different Snapshot settings
+*** Review of the IBM Db2 Event Store Reference Architecture
 _Make sure to allocate enough Docker Memory_
 ```
 
@@ -199,9 +208,11 @@ curl -X GET -H "Content-Type: application/json" -H "authorization: Bearer token"
 curl -X GET -H "Content-Type: application/json" -H "authorization: Bearer token" http://0.0.0.0:9991/com/ibm/event/api/v1/oltp/tables?databaseName=TESTDB
 
 * Running Spark Query:
-curl -k -i -X POST -H "Content-Type: application/json" -H "authorization: Bearer token" --data "{\"sql\": \"select * from ReviewTable\"}" "http://0.0.0.0:9991/com/ibm/event/api/v1/spark/sql?databaseName=TESTDB&tableName=ReviewTable&format=json"
+curl -k -i -X POST -H "Content-Type: application/json" -H "authorization: Bearer token" --data "{\"sql\": \"select * from ReviewTable LIMIT 10\"}" "http://0.0.0.0:9991/com/ibm/event/api/v1/spark/sql?databaseName=TESTDB&tableName=ReviewTable&format=json"
 ```
 
+---
+Data Visualization
 ---
 
 ## Grafana integration
