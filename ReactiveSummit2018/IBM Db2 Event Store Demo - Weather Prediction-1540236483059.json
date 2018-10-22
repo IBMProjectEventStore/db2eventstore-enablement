@@ -54,11 +54,11 @@
   "hideControls": false,
   "id": null,
   "links": [],
-  "refresh": false,
+  "refresh": "30s",
   "rows": [
     {
       "collapse": false,
-      "height": 399,
+      "height": 397,
       "panels": [
         {
           "aliasColors": {},
@@ -155,6 +155,8 @@
                   "value": "six_hour_precip"
                 }
               ],
+              "equalPredicate": "wsid",
+              "equalPredicateValue": "72494023234",
               "queryString": "SELECT temperature FROM raw_weather_data",
               "readOption": "SnapshotNow",
               "readOptions": [
@@ -546,6 +548,98 @@
                 {
                   "name": "daily_aggregate_windspeed",
                   "value": "daily_aggregate_windspeed"
+                },
+                {
+                  "name": "raw_weather_data",
+                  "value": "raw_weather_data"
+                },
+                {
+                  "name": "sky_condition_lookup",
+                  "value": "sky_condition_lookup"
+                },
+                {
+                  "name": "monthly_aggregate_precip",
+                  "value": "monthly_aggregate_precip"
+                },
+                {
+                  "name": "monthly_aggregate_windspeed",
+                  "value": "monthly_aggregate_windspeed"
+                },
+                {
+                  "name": "daily_aggregate_pressure",
+                  "value": "daily_aggregate_pressure"
+                },
+                {
+                  "name": "monthly_aggregate_pressure",
+                  "value": "monthly_aggregate_pressure"
+                },
+                {
+                  "name": "daily_predicted_temperature",
+                  "value": "daily_predicted_temperature"
+                },
+                {
+                  "name": "daily_aggregate_temperature",
+                  "value": "daily_aggregate_temperature"
+                },
+                {
+                  "name": "monthly_aggregate_temperature",
+                  "value": "monthly_aggregate_temperature"
+                },
+                {
+                  "name": "daily_aggregate_precip",
+                  "value": "daily_aggregate_precip"
+                },
+                {
+                  "name": "daily_aggregate_windspeed",
+                  "value": "daily_aggregate_windspeed"
+                },
+                {
+                  "name": "raw_weather_data",
+                  "value": "raw_weather_data"
+                },
+                {
+                  "name": "sky_condition_lookup",
+                  "value": "sky_condition_lookup"
+                },
+                {
+                  "name": "monthly_aggregate_windspeed",
+                  "value": "monthly_aggregate_windspeed"
+                },
+                {
+                  "name": "monthly_aggregate_precip",
+                  "value": "monthly_aggregate_precip"
+                },
+                {
+                  "name": "daily_aggregate_pressure",
+                  "value": "daily_aggregate_pressure"
+                },
+                {
+                  "name": "monthly_aggregate_pressure",
+                  "value": "monthly_aggregate_pressure"
+                },
+                {
+                  "name": "daily_predicted_temperature",
+                  "value": "daily_predicted_temperature"
+                },
+                {
+                  "name": "daily_aggregate_temperature",
+                  "value": "daily_aggregate_temperature"
+                },
+                {
+                  "name": "monthly_aggregate_temperature",
+                  "value": "monthly_aggregate_temperature"
+                },
+                {
+                  "name": "ReviewTable",
+                  "value": "ReviewTable"
+                },
+                {
+                  "name": "daily_aggregate_precip",
+                  "value": "daily_aggregate_precip"
+                },
+                {
+                  "name": "daily_aggregate_windspeed",
+                  "value": "daily_aggregate_windspeed"
                 }
               ],
               "target": "select metric",
@@ -683,6 +777,8 @@
                   "value": "six_hour_precip"
                 }
               ],
+              "equalPredicate": "wsid",
+              "equalPredicateValue": "72494023234",
               "queryString": "SELECT pressure FROM raw_weather_data",
               "readOption": "SnapshotAny",
               "readOptions": [
@@ -794,6 +890,98 @@
                 {
                   "name": "monthly_aggregate_temperature",
                   "value": "monthly_aggregate_temperature"
+                },
+                {
+                  "name": "daily_aggregate_precip",
+                  "value": "daily_aggregate_precip"
+                },
+                {
+                  "name": "daily_aggregate_windspeed",
+                  "value": "daily_aggregate_windspeed"
+                },
+                {
+                  "name": "raw_weather_data",
+                  "value": "raw_weather_data"
+                },
+                {
+                  "name": "sky_condition_lookup",
+                  "value": "sky_condition_lookup"
+                },
+                {
+                  "name": "monthly_aggregate_precip",
+                  "value": "monthly_aggregate_precip"
+                },
+                {
+                  "name": "monthly_aggregate_windspeed",
+                  "value": "monthly_aggregate_windspeed"
+                },
+                {
+                  "name": "daily_aggregate_pressure",
+                  "value": "daily_aggregate_pressure"
+                },
+                {
+                  "name": "monthly_aggregate_pressure",
+                  "value": "monthly_aggregate_pressure"
+                },
+                {
+                  "name": "daily_predicted_temperature",
+                  "value": "daily_predicted_temperature"
+                },
+                {
+                  "name": "daily_aggregate_temperature",
+                  "value": "daily_aggregate_temperature"
+                },
+                {
+                  "name": "monthly_aggregate_temperature",
+                  "value": "monthly_aggregate_temperature"
+                },
+                {
+                  "name": "daily_aggregate_precip",
+                  "value": "daily_aggregate_precip"
+                },
+                {
+                  "name": "daily_aggregate_windspeed",
+                  "value": "daily_aggregate_windspeed"
+                },
+                {
+                  "name": "raw_weather_data",
+                  "value": "raw_weather_data"
+                },
+                {
+                  "name": "sky_condition_lookup",
+                  "value": "sky_condition_lookup"
+                },
+                {
+                  "name": "monthly_aggregate_windspeed",
+                  "value": "monthly_aggregate_windspeed"
+                },
+                {
+                  "name": "monthly_aggregate_precip",
+                  "value": "monthly_aggregate_precip"
+                },
+                {
+                  "name": "daily_aggregate_pressure",
+                  "value": "daily_aggregate_pressure"
+                },
+                {
+                  "name": "monthly_aggregate_pressure",
+                  "value": "monthly_aggregate_pressure"
+                },
+                {
+                  "name": "daily_predicted_temperature",
+                  "value": "daily_predicted_temperature"
+                },
+                {
+                  "name": "daily_aggregate_temperature",
+                  "value": "daily_aggregate_temperature"
+                },
+                {
+                  "name": "monthly_aggregate_temperature",
+                  "value": "monthly_aggregate_temperature"
+                },
+                {
+                  "name": "ReviewTable",
+                  "value": "ReviewTable"
                 },
                 {
                   "name": "daily_aggregate_precip",
@@ -938,7 +1126,9 @@
                   "value": "six_hour_precip"
                 }
               ],
-              "queryString": "SELECT null FROM null",
+              "equalPredicate": "wsid",
+              "equalPredicateValue": "72494023234",
+              "queryString": "SELECT dewpoint FROM raw_weather_data",
               "readOption": "SnapshotAny",
               "readOptions": [
                 {
@@ -1049,6 +1239,98 @@
                 {
                   "name": "monthly_aggregate_temperature",
                   "value": "monthly_aggregate_temperature"
+                },
+                {
+                  "name": "daily_aggregate_precip",
+                  "value": "daily_aggregate_precip"
+                },
+                {
+                  "name": "daily_aggregate_windspeed",
+                  "value": "daily_aggregate_windspeed"
+                },
+                {
+                  "name": "raw_weather_data",
+                  "value": "raw_weather_data"
+                },
+                {
+                  "name": "sky_condition_lookup",
+                  "value": "sky_condition_lookup"
+                },
+                {
+                  "name": "monthly_aggregate_precip",
+                  "value": "monthly_aggregate_precip"
+                },
+                {
+                  "name": "monthly_aggregate_windspeed",
+                  "value": "monthly_aggregate_windspeed"
+                },
+                {
+                  "name": "daily_aggregate_pressure",
+                  "value": "daily_aggregate_pressure"
+                },
+                {
+                  "name": "monthly_aggregate_pressure",
+                  "value": "monthly_aggregate_pressure"
+                },
+                {
+                  "name": "daily_predicted_temperature",
+                  "value": "daily_predicted_temperature"
+                },
+                {
+                  "name": "daily_aggregate_temperature",
+                  "value": "daily_aggregate_temperature"
+                },
+                {
+                  "name": "monthly_aggregate_temperature",
+                  "value": "monthly_aggregate_temperature"
+                },
+                {
+                  "name": "daily_aggregate_precip",
+                  "value": "daily_aggregate_precip"
+                },
+                {
+                  "name": "daily_aggregate_windspeed",
+                  "value": "daily_aggregate_windspeed"
+                },
+                {
+                  "name": "raw_weather_data",
+                  "value": "raw_weather_data"
+                },
+                {
+                  "name": "sky_condition_lookup",
+                  "value": "sky_condition_lookup"
+                },
+                {
+                  "name": "monthly_aggregate_windspeed",
+                  "value": "monthly_aggregate_windspeed"
+                },
+                {
+                  "name": "monthly_aggregate_precip",
+                  "value": "monthly_aggregate_precip"
+                },
+                {
+                  "name": "daily_aggregate_pressure",
+                  "value": "daily_aggregate_pressure"
+                },
+                {
+                  "name": "monthly_aggregate_pressure",
+                  "value": "monthly_aggregate_pressure"
+                },
+                {
+                  "name": "daily_predicted_temperature",
+                  "value": "daily_predicted_temperature"
+                },
+                {
+                  "name": "daily_aggregate_temperature",
+                  "value": "daily_aggregate_temperature"
+                },
+                {
+                  "name": "monthly_aggregate_temperature",
+                  "value": "monthly_aggregate_temperature"
+                },
+                {
+                  "name": "ReviewTable",
+                  "value": "ReviewTable"
                 },
                 {
                   "name": "daily_aggregate_precip",
@@ -1185,6 +1467,8 @@
                   "value": "stdev"
                 }
               ],
+              "equalPredicate": "wsid",
+              "equalPredicateValue": "72494023234",
               "queryString": "SELECT high FROM daily_aggregate_temperature",
               "readOption": "SnapshotAny",
               "readOptions": [
@@ -1446,12 +1730,12 @@
                   "value": "sky_condition_lookup"
                 },
                 {
-                  "name": "monthly_aggregate_precip",
-                  "value": "monthly_aggregate_precip"
-                },
-                {
                   "name": "monthly_aggregate_windspeed",
                   "value": "monthly_aggregate_windspeed"
+                },
+                {
+                  "name": "monthly_aggregate_precip",
+                  "value": "monthly_aggregate_precip"
                 },
                 {
                   "name": "daily_aggregate_pressure",
@@ -1472,6 +1756,58 @@
                 {
                   "name": "monthly_aggregate_temperature",
                   "value": "monthly_aggregate_temperature"
+                },
+                {
+                  "name": "ReviewTable",
+                  "value": "ReviewTable"
+                },
+                {
+                  "name": "daily_aggregate_precip",
+                  "value": "daily_aggregate_precip"
+                },
+                {
+                  "name": "daily_aggregate_windspeed",
+                  "value": "daily_aggregate_windspeed"
+                },
+                {
+                  "name": "raw_weather_data",
+                  "value": "raw_weather_data"
+                },
+                {
+                  "name": "sky_condition_lookup",
+                  "value": "sky_condition_lookup"
+                },
+                {
+                  "name": "monthly_aggregate_windspeed",
+                  "value": "monthly_aggregate_windspeed"
+                },
+                {
+                  "name": "monthly_aggregate_precip",
+                  "value": "monthly_aggregate_precip"
+                },
+                {
+                  "name": "daily_aggregate_pressure",
+                  "value": "daily_aggregate_pressure"
+                },
+                {
+                  "name": "monthly_aggregate_pressure",
+                  "value": "monthly_aggregate_pressure"
+                },
+                {
+                  "name": "daily_predicted_temperature",
+                  "value": "daily_predicted_temperature"
+                },
+                {
+                  "name": "daily_aggregate_temperature",
+                  "value": "daily_aggregate_temperature"
+                },
+                {
+                  "name": "monthly_aggregate_temperature",
+                  "value": "monthly_aggregate_temperature"
+                },
+                {
+                  "name": "ReviewTable",
+                  "value": "ReviewTable"
                 },
                 {
                   "name": "daily_aggregate_precip",
@@ -1528,6 +1864,8 @@
                   "value": "stdev"
                 }
               ],
+              "equalPredicate": "wsid",
+              "equalPredicateValue": "72494023234",
               "queryString": "SELECT low FROM daily_aggregate_temperature",
               "readOption": "SnapshotAny",
               "readOptions": [
@@ -1745,12 +2083,12 @@
                   "value": "sky_condition_lookup"
                 },
                 {
-                  "name": "monthly_aggregate_precip",
-                  "value": "monthly_aggregate_precip"
-                },
-                {
                   "name": "monthly_aggregate_windspeed",
                   "value": "monthly_aggregate_windspeed"
+                },
+                {
+                  "name": "monthly_aggregate_precip",
+                  "value": "monthly_aggregate_precip"
                 },
                 {
                   "name": "daily_aggregate_pressure",
@@ -1771,6 +2109,58 @@
                 {
                   "name": "monthly_aggregate_temperature",
                   "value": "monthly_aggregate_temperature"
+                },
+                {
+                  "name": "ReviewTable",
+                  "value": "ReviewTable"
+                },
+                {
+                  "name": "daily_aggregate_precip",
+                  "value": "daily_aggregate_precip"
+                },
+                {
+                  "name": "daily_aggregate_windspeed",
+                  "value": "daily_aggregate_windspeed"
+                },
+                {
+                  "name": "raw_weather_data",
+                  "value": "raw_weather_data"
+                },
+                {
+                  "name": "sky_condition_lookup",
+                  "value": "sky_condition_lookup"
+                },
+                {
+                  "name": "monthly_aggregate_windspeed",
+                  "value": "monthly_aggregate_windspeed"
+                },
+                {
+                  "name": "monthly_aggregate_precip",
+                  "value": "monthly_aggregate_precip"
+                },
+                {
+                  "name": "daily_aggregate_pressure",
+                  "value": "daily_aggregate_pressure"
+                },
+                {
+                  "name": "monthly_aggregate_pressure",
+                  "value": "monthly_aggregate_pressure"
+                },
+                {
+                  "name": "daily_predicted_temperature",
+                  "value": "daily_predicted_temperature"
+                },
+                {
+                  "name": "daily_aggregate_temperature",
+                  "value": "daily_aggregate_temperature"
+                },
+                {
+                  "name": "monthly_aggregate_temperature",
+                  "value": "monthly_aggregate_temperature"
+                },
+                {
+                  "name": "ReviewTable",
+                  "value": "ReviewTable"
                 },
                 {
                   "name": "daily_aggregate_precip",
@@ -1811,6 +2201,8 @@
                   "value": "prediction"
                 }
               ],
+              "equalPredicate": "wsid",
+              "equalPredicateValue": "72494023234",
               "queryString": "SELECT prediction FROM daily_predicted_temperature",
               "readOption": "SnapshotAny",
               "readOptions": [
@@ -2028,12 +2420,12 @@
                   "value": "sky_condition_lookup"
                 },
                 {
-                  "name": "monthly_aggregate_precip",
-                  "value": "monthly_aggregate_precip"
-                },
-                {
                   "name": "monthly_aggregate_windspeed",
                   "value": "monthly_aggregate_windspeed"
+                },
+                {
+                  "name": "monthly_aggregate_precip",
+                  "value": "monthly_aggregate_precip"
                 },
                 {
                   "name": "daily_aggregate_pressure",
@@ -2054,6 +2446,58 @@
                 {
                   "name": "monthly_aggregate_temperature",
                   "value": "monthly_aggregate_temperature"
+                },
+                {
+                  "name": "ReviewTable",
+                  "value": "ReviewTable"
+                },
+                {
+                  "name": "daily_aggregate_precip",
+                  "value": "daily_aggregate_precip"
+                },
+                {
+                  "name": "daily_aggregate_windspeed",
+                  "value": "daily_aggregate_windspeed"
+                },
+                {
+                  "name": "raw_weather_data",
+                  "value": "raw_weather_data"
+                },
+                {
+                  "name": "sky_condition_lookup",
+                  "value": "sky_condition_lookup"
+                },
+                {
+                  "name": "monthly_aggregate_windspeed",
+                  "value": "monthly_aggregate_windspeed"
+                },
+                {
+                  "name": "monthly_aggregate_precip",
+                  "value": "monthly_aggregate_precip"
+                },
+                {
+                  "name": "daily_aggregate_pressure",
+                  "value": "daily_aggregate_pressure"
+                },
+                {
+                  "name": "monthly_aggregate_pressure",
+                  "value": "monthly_aggregate_pressure"
+                },
+                {
+                  "name": "daily_predicted_temperature",
+                  "value": "daily_predicted_temperature"
+                },
+                {
+                  "name": "daily_aggregate_temperature",
+                  "value": "daily_aggregate_temperature"
+                },
+                {
+                  "name": "monthly_aggregate_temperature",
+                  "value": "monthly_aggregate_temperature"
+                },
+                {
+                  "name": "ReviewTable",
+                  "value": "ReviewTable"
                 },
                 {
                   "name": "daily_aggregate_precip",
@@ -2114,7 +2558,7 @@
     },
     {
       "collapse": false,
-      "height": 250,
+      "height": 344,
       "panels": [
         {
           "cards": {
@@ -2132,7 +2576,7 @@
           "datasource": "${DS_EVENTSTORE}",
           "heatmap": {},
           "highlightCards": true,
-          "id": 6,
+          "id": 4,
           "legend": {
             "show": false
           },
@@ -2200,9 +2644,47 @@
                 {
                   "name": "six_hour_precip",
                   "value": "six_hour_precip"
+                },
+                {
+                  "name": "wsid",
+                  "value": "wsid"
+                },
+                {
+                  "name": "year",
+                  "value": "year"
+                },
+                {
+                  "name": "month",
+                  "value": "month"
+                },
+                {
+                  "name": "ts",
+                  "value": "ts"
+                },
+                {
+                  "name": "high",
+                  "value": "high"
+                },
+                {
+                  "name": "low",
+                  "value": "low"
+                },
+                {
+                  "name": "mean",
+                  "value": "mean"
+                },
+                {
+                  "name": "variance",
+                  "value": "variance"
+                },
+                {
+                  "name": "stdev",
+                  "value": "stdev"
                 }
               ],
-              "queryString": "SELECT null FROM raw_weather_data",
+              "equalPredicate": "wsid",
+              "equalPredicateValue": "72494023234",
+              "queryString": "SELECT mean FROM monthly_aggregate_temperature",
               "readOption": "SnapshotAny",
               "readOptions": [
                 {
@@ -2230,8 +2712,8 @@
                   "value": "table"
                 }
               ],
-              "selectedColumn": "temperature",
-              "selectedTable": "raw_weather_data",
+              "selectedColumn": "mean",
+              "selectedTable": "monthly_aggregate_temperature",
               "selectedTimestamp": "ts",
               "tables": [
                 {
@@ -2365,13 +2847,105 @@
                 {
                   "name": "daily_aggregate_windspeed",
                   "value": "daily_aggregate_windspeed"
+                },
+                {
+                  "name": "raw_weather_data",
+                  "value": "raw_weather_data"
+                },
+                {
+                  "name": "sky_condition_lookup",
+                  "value": "sky_condition_lookup"
+                },
+                {
+                  "name": "monthly_aggregate_precip",
+                  "value": "monthly_aggregate_precip"
+                },
+                {
+                  "name": "monthly_aggregate_windspeed",
+                  "value": "monthly_aggregate_windspeed"
+                },
+                {
+                  "name": "daily_aggregate_pressure",
+                  "value": "daily_aggregate_pressure"
+                },
+                {
+                  "name": "monthly_aggregate_pressure",
+                  "value": "monthly_aggregate_pressure"
+                },
+                {
+                  "name": "daily_predicted_temperature",
+                  "value": "daily_predicted_temperature"
+                },
+                {
+                  "name": "daily_aggregate_temperature",
+                  "value": "daily_aggregate_temperature"
+                },
+                {
+                  "name": "monthly_aggregate_temperature",
+                  "value": "monthly_aggregate_temperature"
+                },
+                {
+                  "name": "daily_aggregate_precip",
+                  "value": "daily_aggregate_precip"
+                },
+                {
+                  "name": "daily_aggregate_windspeed",
+                  "value": "daily_aggregate_windspeed"
+                },
+                {
+                  "name": "raw_weather_data",
+                  "value": "raw_weather_data"
+                },
+                {
+                  "name": "sky_condition_lookup",
+                  "value": "sky_condition_lookup"
+                },
+                {
+                  "name": "monthly_aggregate_windspeed",
+                  "value": "monthly_aggregate_windspeed"
+                },
+                {
+                  "name": "monthly_aggregate_precip",
+                  "value": "monthly_aggregate_precip"
+                },
+                {
+                  "name": "daily_aggregate_pressure",
+                  "value": "daily_aggregate_pressure"
+                },
+                {
+                  "name": "monthly_aggregate_pressure",
+                  "value": "monthly_aggregate_pressure"
+                },
+                {
+                  "name": "daily_predicted_temperature",
+                  "value": "daily_predicted_temperature"
+                },
+                {
+                  "name": "daily_aggregate_temperature",
+                  "value": "daily_aggregate_temperature"
+                },
+                {
+                  "name": "monthly_aggregate_temperature",
+                  "value": "monthly_aggregate_temperature"
+                },
+                {
+                  "name": "ReviewTable",
+                  "value": "ReviewTable"
+                },
+                {
+                  "name": "daily_aggregate_precip",
+                  "value": "daily_aggregate_precip"
+                },
+                {
+                  "name": "daily_aggregate_windspeed",
+                  "value": "daily_aggregate_windspeed"
                 }
               ],
               "target": "select metric",
               "type": "timeseries"
             }
           ],
-          "title": "Daily Temperature Heat Map",
+          "title": "Monthly Aggregated Temperature",
           "tooltip": {
             "show": true,
             "showHistogram": false
@@ -2410,8 +2984,8 @@
     "list": []
   },
   "time": {
-    "from": "2017-10-14T15:13:31.735Z",
-    "to": "2017-11-13T06:03:22.798Z"
+    "from": "2011-01-01T08:00:00.000Z",
+    "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -2440,5 +3014,5 @@
   },
   "timezone": "browser",
   "title": "IBM Db2 Event Store Demo - Weather Prediction",
-  "version": 10
+  "version": 15
 }

@@ -420,4 +420,5 @@ End 2 End visualization
 ##### Lab Assignment
 ```bash
 * Create a new Grafana Dashboard and visualize 1 widgets daily_aggregate_temperature & daily_predicted_temperature
+* You can import the pre-built dashboard *IBM Db2 Event Store Demo - Weather Prediction-1540236483059* to visualize all the events
 ```
