@@ -90,6 +90,9 @@ In the course of this lab, we will provide the exact version number that were lo
 *** https://github.com/IBMProjectEventStore/EventStore-DeveloperEdition/releases/download/1.1.4
 
 ** Lab - On MacOS **
+wget https://es-desktop.cdnedge.bluemix.net/es_desktop.tar.gz/1.1.4
+wget https://github.com/IBMProjectEventStore/EventStore-DeveloperEdition/releases/download/1.1.4/IBM.Db2.Event.Store.-.Developer.Edition-1.1.4.dmg
+mv 1.1.4 es_desktop.tar.gz  
 mkdir ~/Library/Application\ Support/ibm-es-desktop
 cp es_desktop.tar.gz ~/Library/Application\ Support/ibm-es-desktop
 
@@ -98,7 +101,10 @@ Windows Explorer
 C:\Users\Administrator\AppData\Roaming in Windows Explorer and copy the gzip file to ibm-es-desktop folder.
 _Caution: hidden folder_
 _Press "Alt" button and under "Tools" -> "Folder Options" click on "View" tab and select "Show hidden files, folders and drives" radio button_
+wget https://es-desktop.cdnedge.bluemix.net/es_desktop.tar.gz/1.1.4
+mkdir C:\Users\Administrator\AppData\Roaming\ibm-es-desktop
 copy es_desktop.tar.gz C:\Users\Administrator\AppData\Roaming\ibm-es-desktop
+wget https://github.com/IBMProjectEventStore/EventStore-DeveloperEdition/releases/download/1.1.4/IBM.Db2.Event.Store.-.Developer.Edition.Setup.1.1.4.exe
 
 ** Lab - MacOS & Windows **
 * Start the installer (dmg or exe) and follow the instructions
