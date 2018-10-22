@@ -1,5 +1,7 @@
 # Reactive Summit, Montreal, Canada - Oct 22, 2018
 
+*Questions about this lab*? reach me on Twitter @loicjulien
+
 ##### Introduction
 This lab will review & run an end to end application written on top of the IBM Db2 Event Store. The App implements a Weather prediction model using the following products & projects:
 * [The IBM DB2 Event Store](https://www.ibm.com/support/knowledgecenter/en/SSGNPV_1.1.2/eventstore/welcome.html)
