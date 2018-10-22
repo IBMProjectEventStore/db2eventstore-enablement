@@ -64,7 +64,7 @@ This lab presents the following technology:
 
 ## Prerequisites
 
-In the course of this lab, we will provide the exact version number that were locally tested. Feel free to adjust this for your own environment, as long as you can maintain the compatibility requirements.
+In the course of this lab, we will provide the exact version number locally tested. Feel free to adjust this for your own environment. Make sure, however, to maintain compatibility.
 
 * The IBM Db2 Event Store Developer Edition 1.1.4
 * IntelliJ CE 2017.3
@@ -98,10 +98,11 @@ cp es_desktop.tar.gz ~/Library/Application\ Support/ibm-es-desktop
 
 ** Lab - On Windows **
 Windows Explorer
-C:\Users\Administrator\AppData\Roaming in Windows Explorer and copy the gzip file to ibm-es-desktop folder.
+C:\Users\Administrator\AppData\Roaming in Windows Explorer and copy the gzip file to ibm-es-desktop folder
 _Caution: hidden folder_
 _Press "Alt" button and under "Tools" -> "Folder Options" click on "View" tab and select "Show hidden files, folders and drives" radio button_
 wget https://es-desktop.cdnedge.bluemix.net/es_desktop.tar.gz/1.1.4
+mv 1.1.4 es_desktop.tar.gz
 mkdir C:\Users\Administrator\AppData\Roaming\ibm-es-desktop
 copy es_desktop.tar.gz C:\Users\Administrator\AppData\Roaming\ibm-es-desktop
 wget https://github.com/IBMProjectEventStore/EventStore-DeveloperEdition/releases/download/1.1.4/IBM.Db2.Event.Store.-.Developer.Edition.Setup.1.1.4.exe
@@ -122,6 +123,7 @@ docker rm $(docker ps -aq)
 cd ~/Library/Application\ Support/ibm-es-desktop
 rm -rf zookeeper alluxio ibm
 ```
+
 
 ---
 Understanding Notebooks, IBM Db2 Event Store and its Scala Client API
@@ -157,6 +159,7 @@ _Make sure to allocate enough Docker Memory_
 * Create a new Scala notebook and create a new table named ReactiveSummit
 * Drop *ReviewTable* & *ReactiveSummit* table
 ```
+
 
 ---
 Understanding Kafka & IBM Db2 Event Store
@@ -195,6 +198,7 @@ sbt "dataLoad/run -localBroker true -kafkaBroker localhost:9092 -tableName Revie
 *** Modify the connector batch size
 ** Stop the Ingest & Generator
 ```
+
 
 ---
 Understanding REST & IBM Db2 Event Store
@@ -262,6 +266,7 @@ brew services restart grafana
 http://localhost:3000 [admin/admin]
 
 * Install IBM Db2 Event Store plugin:
+wget https://github.com/IBMProjectEventStore/db2eventstore-grafana/files/2019003/db2-event-store-grafana.tar.zip
 mkdir -p /usr/local/var/lib/grafana/plugins/db2-event-store
 mv db2-event-store-grafana.tar /usr/local/var/lib/grafana/plugins/db2-event-store
 cd /usr/local/var/lib/grafana/plugins/db2-event-store
@@ -275,6 +280,7 @@ http://localhost:3000 [admin/admin]
 * Add a new Dashboard
 ** Create a new graph and visualize the incoming data for ReviewTable
 ```
+
 
 ---
 End to End Application with KillrWeather
@@ -328,6 +334,7 @@ sbt compile
 * Stop the ingest
 * Run a REST API call to find out how many rows have been ingested in the table "raw_weather_data"
 ```
+
 
 ---
 Understanding Machine Learning
@@ -384,10 +391,16 @@ Understanding Scoring
 
 * Push the PMML over to the Model listener
 
-curl -X POST -d {\"wsid\":\"72202012839\",\"pmml\":\"\<?xml version='1.0' ?\>\<PMML version='4.3' xmlns='http://www.dmg.org/PMML-4_3' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://www.dmg.org/PMML-4_3 http://www.dmg.org/v4-3/pmml-4-3.xsd'><Header copyright='(c) Copyright IBM Corp. 2011, 2015' description='linear engine'><Application name='Analytic Framework' version='3.0'></Application><Timestamp>Tue Mar 13 23:18:39 2018</Timestamp></Header><DataDictionary numberOfFields='13'><DataField name='wsid' displayName='wsid' optype='categorical' dataType='string'><Value value='722020:12839' property='valid'></Value></DataField><DataField name='year' displayName='year' optype='continuous' dataType='integer'></DataField><DataField name='month' displayName='month' optype='continuous' dataType='integer'></DataField><DataField name='day' displayName='day' optype='continuous' dataType='integer'></DataField><DataField name='ts' displayName='ts' optype='continuous' dataType='integer'></DataField><DataField name='high' displayName='high' optype='continuous' dataType='double'></DataField><DataField name='low' displayName='low' optype='continuous' dataType='double'></DataField><DataField name='mean' displayName='mean' optype='continuous' dataType='double'></DataField><DataField name='variance' displayName='variance' optype='continuous' dataType='double'></DataField><DataField name='stdev' displayName='stdev' optype='continuous' dataType='double'></DataField><DataField name='day-1' displayName='day-1' optype='continuous' dataType='double'></DataField><DataField name='day-2' displayName='day-2' optype='continuous' dataType='double'></DataField><DataField name='day-3' displayName='day-3' optype='continuous' dataType='double'></DataField></DataDictionary><GeneralRegressionModel modelType='generalLinear' targetVariableName='mean' algorithmName='LE' functionName='regression'><Extension extender='spss.com' name='modelID' value='0'></Extension><MiningSchema><MiningField name='day-1'></MiningField><MiningField name='day-2'></MiningField><MiningField name='day-3'></MiningField><MiningField name='mean' usageType='predicted'></MiningField></MiningSchema><ModelStats><UnivariateStats field='mean'><Anova><AnovaRow degreesOfFreedom='4.0' fValue='3786.201363731769' meanOfSquares='7400.271882512297' pValue='0.0' sumOfSquares='29601.08753004919' type='Model'></AnovaRow><AnovaRow degreesOfFreedom='2430.0' meanOfSquares='1.9545373242426847' sumOfSquares='4749.525697909724' type='Error'></AnovaRow><AnovaRow degreesOfFreedom='2434.0' sumOfSquares='34350.613227958915' type='Total'></AnovaRow></Anova></UnivariateStats><UnivariateStats field='mean'><Counts totalFreq='2435.0'></Counts><NumericInfo maximum='29.583333333333332' mean='23.96204441248872' minimum='4.354166666666667' standardDeviation='3.7567038531902854'></NumericInfo></UnivariateStats><UnivariateStats field='day-1'><Counts totalFreq='2435.0'></Counts><NumericInfo maximum='29.6' mean='23.971457905544145' minimum='4.4' standardDeviation='3.7602528327004956'></NumericInfo></UnivariateStats><UnivariateStats field='day-2'><Counts totalFreq='2435.0'></Counts><NumericInfo maximum='29.6' mean='23.972854209445604' minimum='4.4' standardDeviation='3.7385165539743586'></NumericInfo></UnivariateStats><UnivariateStats field='day-3'><Counts totalFreq='2435.0'></Counts><NumericInfo maximum='29.6' mean='23.970718685831645' minimum='4.4' standardDeviation='3.714322046776944'></NumericInfo></UnivariateStats></ModelStats><Targets><Target field='mean' optype='continuous'></Target></Targets><ParameterList><Parameter label='Intercept' name='P0000001'></Parameter><Parameter label='day-1' name='P0000002'></Parameter><Parameter label='day-2' name='P0000003'></Parameter><Parameter label='day-2 * day-2' name='P0000004'></Parameter><Parameter label='day-3 * day-3' name='P0000005'></Parameter></ParameterList><CovariateList><Predictor name='day-1'></Predictor><Predictor name='day-2'></Predictor><Predictor name='day-3'></Predictor></CovariateList><PPMatrix><PPCell parameterName='P0000002' predictorName='day-1' value='1'></PPCell><PPCell parameterName='P0000003' predictorName='day-2' value='1'></PPCell><PPCell parameterName='P0000004' predictorName='day-2' value='2'></PPCell><PPCell parameterName='P0000005' predictorName='day-3' value='2'></PPCell></PPMatrix><ParamMatrix><PCell beta='6.613303128878097' df='1' parameterName='P0000001'></PCell><PCell beta='0.9872189908600112' df='1' parameterName='P0000002'></PCell><PCell beta='-0.524053288645944' df='1' parameterName='P0000003'></PCell><PCell beta='0.008062367469378615' df='1' parameterName='P0000004'></PCell><PCell beta='0.002550459044802118' df='1' parameterName='P0000005'></PCell></ParamMatrix></GeneralRegressionModel></PMML>\"} http://localhost:5000
+cd <PATH>/fdp-killrweather-event-store/ml-model
+curl -H "Content-Type: application/json" -X POST -d @722020:12839 http://localhost:5000/model
+curl -H "Content-Type: application/json" -X POST -d @722950:23174 http://localhost:5000/model
+curl -H "Content-Type: application/json" -X POST -d @724940:23234 http://localhost:5000/model
+curl -H "Content-Type: application/json" -X POST -d @725030:14732 http://localhost:5000/model
+curl -H "Content-Type: application/json" -X POST -d @725300:94846 http://localhost:5000/model
 
 * Query that table in REST to see the prediction
 ```
+
 
 ---
 End 2 End visualization
@@ -406,5 +419,5 @@ End 2 End visualization
 
 ##### Lab Assignment
 ```bash
-* Create a new Grafana Dashboard and visualize daily_aggregate_temperature & daily_predicted_temperature
+* Create a new Grafana Dashboard and visualize 1 widgets daily_aggregate_temperature & daily_predicted_temperature
 ```
