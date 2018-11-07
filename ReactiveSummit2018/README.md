@@ -260,7 +260,12 @@ http://localhost:3000 [admin/admin]
 * Add a new Dashboard
 ** Create a new graph and visualize the incoming data for ReviewTable
 ```
-**Visualization**
+**References & Visualization**
+
+![](dataSource.png)
+
+![](dataSourceSave.png)
+
 ![](grafana_kafka.png)
 
 ---
