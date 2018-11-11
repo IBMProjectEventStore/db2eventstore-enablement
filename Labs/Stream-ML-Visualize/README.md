@@ -15,7 +15,7 @@ This lab will review & run an end to end application written on top of the IBM D
 
 As a reference, the following video was recorded when running the entire application on top of the IBM Fast Data Platform. In this lab, in order to simplify our runtime configuration and clarity of understanding, the App is made to run standalone against the IBM Db2 Event Store Dev. Edition.
 
-![](overallArchitecture.png)(https://youtu.be/q9LmWtZAAdU "Reactive Summit 2018 Demo")
+![](overallArchitecture.png)(https://youtu.be/q9LmWtZAAdU "Stream & visualize your data with the IBM Db2 Event Store")
 
 ##### Tools required
 
@@ -246,11 +246,11 @@ brew services restart grafana
 http://localhost:3000 [admin/admin]
 
 * Install IBM Db2 Event Store plugin:
-wget https://github.com/IBMProjectEventStore/db2eventstore-grafana/files/2019003/db2-event-store-grafana.tar.zip
+wget https://github.com/IBMProjectEventStore/db2eventstore-grafana/releases/download/ReactiveSummit2018/db2-event-store-grafana-1.1.tar
 mkdir -p /usr/local/var/lib/grafana/plugins/db2-event-store
-mv db2-event-store-grafana.tar /usr/local/var/lib/grafana/plugins/db2-event-store
+mv db2-event-store-grafana-1.1.tar /usr/local/var/lib/grafana/plugins/db2-event-store
 cd /usr/local/var/lib/grafana/plugins/db2-event-store
-tar -zxvf db2-event-store-grafana.tar
+tar -zxvf db2-event-store-grafana-1.1.tar
 brew services restart grafana
 
 * Initialize the REST Server:
