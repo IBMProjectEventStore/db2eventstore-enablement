@@ -1,4 +1,4 @@
-# Reactive Summit, Montreal, Canada - Oct 22, 2018
+# Learn how to stream & visualize your data with the IBM Db2 Event Store
 
 
 ##### Introduction
