@@ -248,9 +248,9 @@ http://localhost:3000 [admin/admin]
 * Install IBM Db2 Event Store plugin:
 wget https://github.com/IBMProjectEventStore/db2eventstore-grafana/releases/download/ReactiveSummit2018/db2-event-store-grafana-1.1.tar
 mkdir -p /usr/local/var/lib/grafana/plugins/db2-event-store
-mv db2-event-store-grafana-1.1 /usr/local/var/lib/grafana/plugins/db2-event-store
+mv db2-event-store-grafana-1.1.tar /usr/local/var/lib/grafana/plugins/db2-event-store
 cd /usr/local/var/lib/grafana/plugins/db2-event-store
-tar -zxvf db2-event-store-grafana-1.1
+tar -zxvf db2-event-store-grafana-1.1.tar
 brew services restart grafana
 
 * Initialize the REST Server:
