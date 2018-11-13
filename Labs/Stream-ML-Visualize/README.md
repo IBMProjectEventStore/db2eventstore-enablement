@@ -416,3 +416,5 @@ End 2 End visualization
 You can also curl the data directly, using the REST API reviewed earlier, like this:
 curl -k -i -X POST -H "Content-Type: application/json" -H "authorization: Bearer token" --data "{\"sql\": \"SELECT avg(value), avg(ts) FROM ReviewTable WHERE sensor=238 AND ts>=1540167276448 AND ts<=1540167576448 GROUP BY ts DIV 200\"}" "http://0.0.0.0:9991/com/ibm/event/api/v1/spark/sql?databaseName=TESTDB&tableName=ReviewTable&format=json"
 ```
+**Final Dashboard**
+![](Dashboard.png)
