@@ -248,9 +248,11 @@ brew services restart grafana
 http://localhost:3000 [admin/admin]
 
 * Install IBM Db2 Event Store plugin:
-<<<<<<< HEAD
 wget https://github.com/IBMProjectEventStore/db2eventstore-grafana/releases/download/ReactiveSummit2018/db2-event-store-grafana-1.1.tar 
 (If 'wget' is not available, please use 'curl -L https://github.com/IBMProjectEventStore/db2eventstore-grafana/releases/download/ReactiveSummit2018/db2-event-store-grafana-1.1.tar -o db2-event-store-grafana-1.1.tar')
+=======
+wget https://github.com/IBMProjectEventStore/db2eventstore-grafana/releases/download/ReactiveSummit2018/db2-event-store-grafana-1.1.tar
+>>>>>>> master
 =======
 wget https://github.com/IBMProjectEventStore/db2eventstore-grafana/releases/download/ReactiveSummit2018/db2-event-store-grafana-1.1.tar
 >>>>>>> master
@@ -423,7 +425,11 @@ End to End visualization
 ##### Lab Assignment
 ```bash
 * Create a new Grafana Dashboard and visualize 1 widgets daily_aggregate_temperature & daily_predicted_temperature
-* You can import the pre-built dashboard *IBM Db2 Event Store Demo - Weather Prediction-1540236483059* to visualize all the events
-* You can also curl the data directly, using the REST API reviewed earlier, like this:
-* curl -k -i -X POST -H "Content-Type: application/json" -H "authorization: Bearer token" --data "{\"sql\": \"SELECT avg(value), avg(ts) FROM ReviewTable WHERE sensor=238 AND ts>=1540167276448 AND ts<=1540167576448 GROUP BY ts DIV 200\"}" "http://0.0.0.0:9991/com/ibm/event/api/v1/spark/sql?databaseName=TESTDB&tableName=ReviewTable&format=json"
+
+* You can import the pre-built dashboard *IBM Db2 Event Store Demo - Weather Prediction-1542075439432* to visualize all the events
+    * You IBM Db2 Event Store data source must be named *DB2EventStore* for the dashboard to work "as-is"
+You can also curl the data directly, using the REST API reviewed earlier, like this:
+curl -k -i -X POST -H "Content-Type: application/json" -H "authorization: Bearer token" --data "{\"sql\": \"SELECT avg(value), avg(ts) FROM ReviewTable WHERE sensor=238 AND ts>=1540167276448 AND ts<=1540167576448 GROUP BY ts DIV 200\"}" "http://0.0.0.0:9991/com/ibm/event/api/v1/spark/sql?databaseName=TESTDB&tableName=ReviewTable&format=json"
 ```
+**Final Dashboard**
+![](Dashboard.png)
