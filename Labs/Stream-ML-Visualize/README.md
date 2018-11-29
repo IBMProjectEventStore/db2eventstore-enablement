@@ -1,8 +1,8 @@
-# Learn how to stream & visualize your data with the IBM Db2 Event Store
+# Learn how to stream & visualize your data with machine learning using the IBM Db2 Event Store
 
 
 ##### Introduction
-This lab will review & run an end to end application written on top of the IBM Db2 Event Store. The App implements a Weather prediction model using the following products & projects:
+This lab will review & run an end to end application written on top of the IBM Db2 Event Store. The App implements a weather prediction model using the following products & projects:
 * [The IBM DB2 Event Store](https://www.ibm.com/support/knowledgecenter/en/SSGNPV_1.1.2/eventstore/welcome.html)
 * [The IBM Data Science Experience local](https://datascience.ibm.com/local)
 * [The Lightbend Fast Data Platform](https://www.lightbend.com/products/fast-data-platform)
@@ -19,7 +19,7 @@ As a reference, the following video was recorded when running the entire applica
 
 ##### Tools required
 
-* SBT 0.13.16
+* sbt 0.13.16
 * MacOS Terminal Window
 * Git
 * IBM Db2 Event Store 1.1.4
@@ -38,7 +38,7 @@ _I need fast access to real time data to analyze it, execute machine learning an
 ## Presentation of the IBM Db2 Event Store & Fast Data
 
 See the companion presentation:
-* `FastDataIngestAnalyticsOct22.pptx`
+* (FastDataIngestAnalyticsOct22.pptx)
 
 ---
 
@@ -70,7 +70,7 @@ In the course of this lab, we will provide the exact version number locally test
 
 * The IBM Db2 Event Store Developer Edition 1.1.4
 * IntelliJ CE 2017.3
-* SBT 0.13.16 (version tested)
+* sbt 0.13.16 (version tested)
 * Docker Version 18.06.1-ce-mac73 (26764)
 
 ---
@@ -78,19 +78,19 @@ In the course of this lab, we will provide the exact version number locally test
 ## Installing IBM Db2 Event Store
 
 ##### References
-[IBM Db2 Dev Edition](https://www.ibm.com/support/knowledgecenter/en/SSGNPV_1.1.2/eventstore/desktop/welcome.html)
+[IBM Db2 Developer Edition](https://www.ibm.com/support/knowledgecenter/en/SSGNPV_1.1.2/eventstore/desktop/welcome.html)
 
 ##### Increase Docker CPU/Mem
-* 6 CPU / 8 GB
+* 6 CPU / 8 GB (This can be accomplished by clicking on 'Preferences' -> 'Advanced', then clicking on 'Apply & Restart' if necessary)
 
 #####  Installing the IBM Db2 Event Store
 ```bash
-** Download the platfom specific & latest installer
-*** https://github.com/IBMProjectEventStore/EventStore-DeveloperEdition/releases
+* Download the platfom specific & latest installer
+* https://github.com/IBMProjectEventStore/EventStore-DeveloperEdition/releases
 
-** MacOS & Windows **
+* MacOS & Windows **
 * Start the installer (dmg or exe) and accept all defaults
-** This operation may take some time based on your bandwith
+* This operation may take some time based on your bandwith
 ```
 
 #####  Cleaning up the IBM Db2 Event Store metadata
@@ -117,29 +117,29 @@ Understanding Notebooks, IBM Db2 Event Store and its Scala Client API
 * IBM Db2 Event Store
 
 ##### Objectives
-* Understand how to use a Jupyter Notebook to interact with the IBM Db2 Event Store
+* Understand how to use a Jupyter notebook to interact with the IBM Db2 Event Store
 * Understand the IBM Db2 Event Store Scala API
 
-##### References
+##### Reference
 [Db2 Event Store Scala API](https://www.ibm.com/support/knowledgecenter/en/SSGNPV_1.1.2/eventstore/develop/dev-guide.html)
 
-##### Lab Assignments
+##### Lab Assignment
 ```bash
 * In the IBM Db2 Event Store
-* Run the Notebook *Introduction to IBM Db2 Event Store Scala API*
-** Run all the Cells
-** Review of the Event Store Scala API
-** Understanding the Event Store SparkSQL query architecture
-** Understanding querying the Db2 Event Store with different Snapshot settings
-*** Review of the IBM Db2 Event Store Reference Architecture
-_Make sure to allocate enough Docker Memory_
+* Run the notebook *Introduction to IBM Db2 Event Store Scala API* (Select the notebook from 'Community' and click on 'Copy to Notebooks' on the top right to enable it)
+* Run all the cells (Do not change the ip address 173.19.0.1 since it is the correctly configured internal IP address for the containter)
+* Review of the Event Store Scala API
+* Understanding the Event Store SparkSQL query architecture
+* Understanding querying the Db2 Event Store with different snapshot settings
+* Review of the IBM Db2 Event Store Reference Architecture
+* Make sure to allocate enough Docker memory
 ```
 
 ##### Lab Assignment
 ```bash
-* Stop the kernel for the running notebooks
+* Stop the kernel on any running notebooks
 * Create a new Scala notebook and create a new table named ReactiveSummit
-* Drop *ReviewTable* & *ReactiveSummit* table
+* Drop *ReviewTable* and *ReactiveSummit* table
 ```
 
 
@@ -150,7 +150,7 @@ Understanding Kafka & IBM Db2 Event Store
 ## Kafka Ingest
 
 ##### Tools 
-* SBT
+* sbt
 * Terminal Window
 * Git
 * IBM Db2 Event Store
@@ -159,14 +159,15 @@ Understanding Kafka & IBM Db2 Event Store
 * Understand how to stream data into the IBM Db2 Event Store with Kafka
 
 ##### References
-[Installing sbt](https://www.scala-sbt.org/download.html)
-[Kafka Data Source Git Repo](https://github.com/IBMProjectEventStore/db2eventstore-kafka)
+* [Installing sbt](https://www.scala-sbt.org/download.html)
+* [Kafka Data Source Git Repo](https://github.com/IBMProjectEventStore/db2eventstore-kafka)
 
-##### Installing Sbt 0.13.16
+##### Installing sbt 0.13.16
 ```bash
-* sbt supplied with archive or install on your own
-./bin/sbt sbt-version
-* Should be at 0.13.16 level 
+* install sbt 0.13.16 following the reference above
+* ./bin/sbt sbt-version
+* Should be at 0.13.16 level
+* Add sbt to 'PATH' by modifying '/etc/paths' 
 ```
 
 ##### Lab Assignment
@@ -174,11 +175,12 @@ Understanding Kafka & IBM Db2 Event Store
 * Open a Terminal window
 * Follow the direction from the following GIT repo on how to setup
 * https://github.com/IBMProjectEventStore/db2eventstore-kafka
+* Do not issue the 'sbt "eventStream/run ..."' or 'sbt "dataLoad/run ..." commands documented in the above GIT repo.  Instead use the following commands for this exercise.  But please do read and understand the 'Options' available for these commands.
 sbt "eventStream/run -localBroker true -kafkaBroker localhost:9092 -topic estopic -eventStore localhost:1100 -database TESTDB -user admin -metadata sensor -password password -metadata ReviewTable -streamingInterval 5000 -batchSize 10"
 sbt "dataLoad/run -localBroker true -kafkaBroker localhost:9092 -tableName ReviewTable -topic estopic -group group -metadata sensor -metadataId 238 -batchSize 10"
-** Understand the parameters provided to the connector & generator
-*** Modify the connector batch size
-** Stop the Ingest & Generator
+* Understand the parameters provided to the connector & generator
+* Modify the connector batch size
+* Stop the Ingest & Generator
 ```
 
 
@@ -203,7 +205,7 @@ Understanding REST & IBM Db2 Event Store
 ##### Lab Assignment
 ```bash
 * Open a Terminal window
-* SBT ingest with kafka into the IBM Db2 Event Store (with the generator)
+* sbt ingest with kafka into the IBM Db2 Event Store (with the generator)
 * Run the following curl commands
 
 * Navigating the Catalog & Data:
@@ -232,8 +234,8 @@ Data Visualization
 * Understand how to visualize the ingested data
 
 ##### Reference
-[Installing Grafana](https://grafana.com/grafana/download?platform=mac)
-[Grafana Data Source Git Repo](https://github.com/IBMProjectEventStore/db2eventstore-grafana)
+* [Installing Grafana](https://grafana.com/grafana/download?platform=mac)
+* [Grafana Data Source Git Repo](https://github.com/IBMProjectEventStore/db2eventstore-grafana)
 
 ##### Lab Assignment
 ```bash
@@ -246,6 +248,8 @@ brew services restart grafana
 http://localhost:3000 [admin/admin]
 
 * Install IBM Db2 Event Store plugin:
+wget https://github.com/IBMProjectEventStore/db2eventstore-grafana/releases/download/ReactiveSummit2018/db2-event-store-grafana-1.1.tar 
+(If 'wget' is not available, please use 'curl -L https://github.com/IBMProjectEventStore/db2eventstore-grafana/releases/download/ReactiveSummit2018/db2-event-store-grafana-1.1.tar -o db2-event-store-grafana-1.1.tar')
 wget https://github.com/IBMProjectEventStore/db2eventstore-grafana/releases/download/ReactiveSummit2018/db2-event-store-grafana-1.1.tar
 mkdir -p /usr/local/var/lib/grafana/plugins/db2-event-store
 mv db2-event-store-grafana-1.1.tar /usr/local/var/lib/grafana/plugins/db2-event-store
@@ -260,6 +264,7 @@ curl -X POST -H "Content-Type: application/json" -H "authorization: Bearer token
 * Login to Grafana:
     * http://localhost:3000 [admin/admin]
         * Add a Db2 Event Store Data Source
+        * Change host port to 9991, click 'Reset', 'Refresh' and 'Save & Test'
 
 * Restart the generator and kafka stream
     * Add a new Dashboard
@@ -298,7 +303,7 @@ End to End Application with KillrWeather
 
 ```bash
 - KillRWeather Repo Setup
-git clone git@github.com:lightbend/fdp-killrweather-event-store.git
+git clone https://github.com/lightbend/fdp-killrweather-event-store.git
 * Understand the module structure
 
 - IntelliJ Setup
@@ -306,13 +311,17 @@ git clone git@github.com:lightbend/fdp-killrweather-event-store.git
 * Select the project root directory
 * Select sbt as the project type
 * Use the default settings for sbt. Use JDK 1.8 if it's not shown as the default.
-
-- Compile the code
+* Compile the code
 * Open a terminal window in IntelliJ
-sbt clean
-sbt compile
-
+* sbt clean
+* sbt compile
 * Run the sample
+
+- sbt Setup
+* sbt clean
+* sbt compile
+* sbt '; project appLocalRunner; eval System.setProperty("config.resource", "localWithCluster.conf") ; runMain com.lightbend.killrweather.app.KillrWeatherEventStore'
+* sbt '; project fdp-killrweather-event-store-loader; eval System.setProperty("config.resource", "localWithCluster.conf") ; runMain com.lightbend.killrweather.loader.kafka.KafkaDataIngester'
 ```
 
 **Data ingest**
@@ -349,12 +358,12 @@ Understanding Machine Learning
 ##### Lab Assignment
 ```bash
 * In IBM Db2 Event Store Desktop
-** Add Notebooks
-** Select "Weather+Prediction+Model.ipynb"
-*** We won't have the SPSS libraries in today's environment, but this is a good sample to have, for reference
-** Select "Weather+Spark+ML.ipynb" - Using SparkML instead
-*** Run the cells
-** Understand the different between training_data & test_data
+* Add Notebooks
+* Select "Weather+Prediction+Model.ipynb"
+* We won't have the SPSS libraries in today's environment, but this is a good sample to have, for reference
+* Select "Weather+Spark+ML.ipynb" - Using SparkML instead
+* Run the cells
+* Understand the different between training_data & test_data
 ```
 
 ---
@@ -377,8 +386,8 @@ Understanding Scoring
 * Which table will carry the new prediction with any given Event?
 
 * KillrWeather
-** In IntelliJ, restart Ingest
-** In IntelliJ, run the ModelServer & ModelListener
+* In IntelliJ, restart Ingest
+* In IntelliJ, run the ModelServer and ModelListener
 
 * Push the PMML over to the Model listener
 
@@ -389,12 +398,12 @@ curl -H "Content-Type: application/json" -X POST -d @724940:23234 http://localho
 curl -H "Content-Type: application/json" -X POST -d @725030:14732 http://localhost:5000/model
 curl -H "Content-Type: application/json" -X POST -d @725300:94846 http://localhost:5000/model
 
-* Query that table in REST to see the prediction
+* Query that table using REST to see the prediction
 ```
 
 
 ---
-End 2 End visualization
+End to End visualization
 ---
 
 ## Data Visualization for KillrWeather Application with ML and Feedback Loop
@@ -411,6 +420,7 @@ End 2 End visualization
 ##### Lab Assignment
 ```bash
 * Create a new Grafana Dashboard and visualize 1 widgets daily_aggregate_temperature & daily_predicted_temperature
+
 * You can import the pre-built dashboard *IBM Db2 Event Store Demo - Weather Prediction-1542075439432* to visualize all the events
     * You IBM Db2 Event Store data source must be named *DB2EventStore* for the dashboard to work "as-is"
 You can also curl the data directly, using the REST API reviewed earlier, like this:
