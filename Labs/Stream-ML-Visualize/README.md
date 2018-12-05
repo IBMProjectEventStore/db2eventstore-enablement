@@ -4,7 +4,7 @@
 ##### Introduction
 This lab will review & run an end to end application written on top of the IBM Db2 Event Store. The App implements a weather prediction model using the following products & projects:
 * [The IBM DB2 Event Store](https://www.ibm.com/support/knowledgecenter/en/SSGNPV_1.1.2/eventstore/welcome.html)
-* [The IBM Data Science Experience local](https://datascience.ibm.com/local)
+* [The IBM Watson Studio local](https://content-dsxlocal.mybluemix.net/docs/content/SSAS34_current/local/welcome.html)
 * [The Lightbend Fast Data Platform](https://www.lightbend.com/products/fast-data-platform)
 * [Apache Spark](http://spark.apache.org)
 * [Apache Kafka](http://kafka.apache.org)
@@ -88,7 +88,7 @@ In the course of this lab, we will provide the exact version number locally test
 * Download the platfom specific & latest installer
 * https://github.com/IBMProjectEventStore/EventStore-DeveloperEdition/releases
 
-* MacOS & Windows **
+* MacOS & Windows
 * Start the installer (dmg or exe) and accept all defaults
 * This operation may take some time based on your bandwith
 ```
@@ -250,7 +250,6 @@ http://localhost:3000 [admin/admin]
 * Install IBM Db2 Event Store plugin:
 wget https://github.com/IBMProjectEventStore/db2eventstore-grafana/releases/download/ReactiveSummit2018/db2-event-store-grafana-1.1.tar 
 (If 'wget' is not available, please use 'curl -L https://github.com/IBMProjectEventStore/db2eventstore-grafana/releases/download/ReactiveSummit2018/db2-event-store-grafana-1.1.tar -o db2-event-store-grafana-1.1.tar')
-wget https://github.com/IBMProjectEventStore/db2eventstore-grafana/releases/download/ReactiveSummit2018/db2-event-store-grafana-1.1.tar
 mkdir -p /usr/local/var/lib/grafana/plugins/db2-event-store
 mv db2-event-store-grafana-1.1.tar /usr/local/var/lib/grafana/plugins/db2-event-store
 cd /usr/local/var/lib/grafana/plugins/db2-event-store
