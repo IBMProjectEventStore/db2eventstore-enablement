@@ -7,7 +7,38 @@
 * [IBM Community Day, Oct. 11, 2018](https://www.ibmai-platform.bemyapp.com/#/event?target=%2Fconference%2F5bb544cab4ae3f00044cba04)
     * `Fast Data Ingest & Analytics Oct 11.pptx`
 
-## Learn how to stream & visualize your data with the IBM Db2 Event Store
+## IBM Db2 Event Store enablement Repositories
+
+* https://github.com/IBM/db2-event-store-taxi-trips
+This code repository provides a sample on how to stream data from a Java program and use a Jupyter notebook to demonstrate charting of statistics based on historical and live events. IBM Db2 Event Store is used as the event database.
+
+* https://github.com/IBM/db2-event-store-clickstream
+This code repository provides a sample notebooks to demonstrate a use case of clickstream analysis with IBM Db2 Event Store using Scala APIs to ingest and analyze web event data.
+
+* https://github.com/IBMStreams/streamsx.eventstore
+This code repository provides an implementation for connecting IBM Stream to the IBM Db2 Event Store
+
+* https://github.com/IBM/db2-event-store-akka-streams
+This code repository provides an online retail data streaming code pattern with Akka and Db2 Event Store
+
+* https://github.com/IBMProjectEventStore/db2eventstore-kafka
+This code repository provides a sample implementation for connecting Apache Kafka to the IBM Db2 Event Store
+
+* https://github.com/IBMProjectEventStore/db2eventstore-grafana
+This code repository provides a Grafana sample data source for the IBM Db2 Event Store
+
+* https://github.com/IBMProjectEventStore/Utilities
+This code repository provices a CVS loader utility to ingest data into the IBM Db2 Event Store
+
+## IBM Db2 Event Store connectivity drivers
+
+* The IBM Db2 Event Store JDBC drivers can be accessed on Maven
+https://mvnrepository.com/artifact/com.ibm.event/ibm-db2-eventstore-jdbcdriver
+
+* The IBM Db2 Event Store Scala drivers can be accessed on Maven
+https://mvnrepository.com/artifact/com.ibm.event/ibm-db2-eventstore-client
+
+## Lab: Learn how to stream & visualize your data with the IBM Db2 Event Store
 
 This lab provides an introduction to streaming data microservices using Kafka with Akka Streams and Kafka Streams. It references multiple other GIT repositories & will guide you to build a complete end to end application:
 
