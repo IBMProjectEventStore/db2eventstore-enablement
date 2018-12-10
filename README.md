@@ -28,7 +28,10 @@ This code repository provides a sample implementation for connecting Apache Kafk
 This code repository provides a Grafana sample data source for the IBM Db2 Event Store
 
 * https://github.com/IBMProjectEventStore/Utilities
-This code repository provices a CVS loader utility to ingest data into the IBM Db2 Event Store
+This code repository provides a CVS loader utility to ingest data into the IBM Db2 Event Store
+
+* https://github.com/IBMProjectEventStore/db2eventstore-IoT-Analytics
+This code repository provides a use case example of performing data analytics on IoT sensor data using IBM Db2 Event Store as the event database. The topics include running full-lifecycle data analytics on IBM Db2 Event Store database using Jupyter notebooks, as well as advanced use case of interacting with IBM Db2 Event Store with external applications.
 
 ## IBM Db2 Event Store connectivity drivers
 
