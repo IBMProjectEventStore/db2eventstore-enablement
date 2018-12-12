@@ -15,9 +15,6 @@ This code repository provides a sample on how to stream data from a Java program
 * https://github.com/IBM/db2-event-store-clickstream
 This code repository provides a sample notebooks to demonstrate a use case of clickstream analysis with IBM Db2 Event Store using Scala APIs to ingest and analyze web event data.
 
-* https://github.com/IBMStreams/streamsx.eventstore
-This code repository provides an implementation for connecting IBM Stream to the IBM Db2 Event Store
-
 * https://github.com/IBM/db2-event-store-akka-streams
 This code repository provides an online retail data streaming code pattern with Akka and Db2 Event Store
 
@@ -40,6 +37,9 @@ https://mvnrepository.com/artifact/com.ibm.event/ibm-db2-eventstore-jdbcdriver
 
 * The IBM Db2 Event Store Scala drivers can be accessed on Maven
 https://mvnrepository.com/artifact/com.ibm.event/ibm-db2-eventstore-client
+
+* https://github.com/IBMStreams/streamsx.eventstore
+This code repository provides an implementation for connecting IBM Stream to the IBM Db2 Event Store
 
 ## Lab: Learn how to stream & visualize your data with the IBM Db2 Event Store
 
