@@ -1,8 +1,8 @@
-# Learn how to stream & visualize your data with machine learning using the IBM Db2 Event Store
+# Learn about the IBM Fast Data Platform
 
 
 ##### Introduction
-This lab will review & run an end to end application written on top of the IBM Db2 Event Store. The App implements a weather prediction model using the following products & projects:
+This lab will review & run an end to end application written on top of the IBM Fast Data Platform. The App implements a weather prediction model using the following products & projects:
 * [The IBM DB2 Event Store](https://www.ibm.com/support/knowledgecenter/en/SSGNPV_1.1.2/eventstore/welcome.html)
 * [The IBM Watson Studio local](https://content-dsxlocal.mybluemix.net/docs/content/SSAS34_current/local/welcome.html)
 * [The Lightbend Fast Data Platform](https://www.lightbend.com/products/fast-data-platform)

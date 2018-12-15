@@ -38,10 +38,10 @@ https://mvnrepository.com/artifact/com.ibm.event/ibm-db2-eventstore-jdbcdriver
 * The IBM Db2 Event Store Scala drivers can be accessed on Maven
 https://mvnrepository.com/artifact/com.ibm.event/ibm-db2-eventstore-client
 
-* https://github.com/IBMStreams/streamsx.eventstore
-This code repository provides an implementation for connecting IBM Stream to the IBM Db2 Event Store
+* This code repository provides an implementation for connecting IBM Stream to the IBM Db2 Event Store
+https://github.com/IBMStreams/streamsx.eventstore
 
-## Lab: Learn how to stream & visualize your data with the IBM Db2 Event Store
+## Lab: Learn about the IBM Fast Data Platform
 
 This lab provides an introduction to streaming data microservices using Kafka with Akka Streams and Kafka Streams. It references multiple other GIT repositories & will guide you to build a complete end to end application:
 
