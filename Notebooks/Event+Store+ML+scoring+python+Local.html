@@ -11785,19 +11785,6 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The database that you will use depends on the environment you are running:</p>
-<ul>
-<li>For stand-alone Db2 Event Store installations, this notebook uses the <code>TESTDB</code> database.</li>
-<li>For IBM Cloud Private for Data installations, this notebook uses the <code>EVENTDB</code> database.</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Table-of-contents">Table of contents<a class="anchor-link" href="#Table-of-contents">&#194;&#182;</a></h2><ol>
 <li><a href="#connect-to-es">Connect to IBM Db2 Event Store</a><br></li>
 <li><a href="#define-database">Create a database and schema</a><br></li>
@@ -11817,7 +11804,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">eventstore.oltp</span> <span class="kn">import</span> <span class="n">EventContext</span>
@@ -11837,35 +11824,25 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="connect-to-es"></a></p>
-<h3 id="1.-Set-connection-to-IBM-Db2-Event-Store">1. Set connection to IBM Db2 Event Store<a class="anchor-link" href="#1.-Set-connection-to-IBM-Db2-Event-Store">&#194;&#182;</a></h3><p>To establish a connection to IBM Db2 Event Store, you need connection endpoints. Use the configuration reader to provide a set of APIs for IBM Db2 Event Store connection and configuration.</p>
-<p><code># ConfigurationReader.setConnectionEndpoints("&lt;HostName&gt;:&lt;PortNumber&gt;")</code></p>
-<p>You can also specify multiple connection endpoints by providing a connection string that contains comma-separated list of HostName:PortNumber pairs.</p>
-<p><code># ConfigurationReader.setConnectionEndpoints("&lt;HostName1&gt;:&lt;PortNumber1&gt;,&lt;HostName2&gt;:&lt;PortNumber2&gt;,&lt;Hostname3&gt;:&lt;PortNumber3&gt;")</code></p>
-<p>Using the configuration reader API, set up the userID and password that will be used to connect to IBM Db2 Event Store.</p>
-<p><code># ConfigurationReader.setEventUser("&lt;userid&gt;")</code></p>
-<p><code># ConfigurationReader.setEventPassword("&lt;password&gt;")</code></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>For stand-alone Db2 Event Store installations, run the following cell using <code>TESTDB</code>.</p>
+<h3 id="1.-Setup-connection-to-IBM-Db2-Event-Store">1. Setup connection to IBM Db2 Event Store<a class="anchor-link" href="#1.-Setup-connection-to-IBM-Db2-Event-Store">&#194;&#182;</a></h3><p>To establish a connection to IBM Db2 Event Store, you need to set the connection endpoints. Use the configuration reader to provide a set of APIs for IBM Db2 Event Store connection and configuration.</p>
+<p>You need specify mulitple jdbc as well as connection endpoints by providing a connection string in following format:</p>
+<p><code># ConfigurationReader.setConnectionEndpoints("&lt;ProxyIP&gt;:&lt;JDBCPort&gt;;&lt;HostIP1&gt;:&lt;ConnectionPort1&gt;,&lt;HostIP2&gt;:&lt;ConnectionPort2&gt;,&lt;HostIP3&gt;:&lt;ConnectionPort3&gt;")</code></p>
+<p>For ICP4Data users, you can find connection string in the UI.</p>
+<p>You also need to set the userID and password that will be used to connect to IBM Db2 Event Store instance.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">try</span><span class="p">:</span>
-    <span class="n">EventContext</span><span class="o">.</span><span class="n">drop_database</span><span class="p">(</span><span class="s2">&quot;TESTDB&quot;</span><span class="p">)</span>
-<span class="k">except</span><span class="p">:</span>
-    <span class="k">pass</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Using the configuration reader API, set up the userID and password that will be used to connect to IBM Db2 Event Store.</span>
+
+<span class="n">ConfigurationReader</span><span class="o">.</span><span class="n">setEventUser</span><span class="p">(</span><span class="s2">&quot;&lt;userid&gt;&quot;</span><span class="p">)</span>
+
+<span class="n">ConfigurationReader</span><span class="o">.</span><span class="n">setEventPassword</span><span class="p">(</span><span class="s2">&quot;&lt;password&gt;&quot;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -11878,33 +11855,24 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="define-database"></a></p>
-<h3 id="2.-Create-a-Database-and-schema">2. Create a Database and schema<a class="anchor-link" href="#2.-Create-a-Database-and-schema">&#194;&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>For stand-alone Db2 Event Store installations, run the following cell using <code>TESTDB</code>.</p>
-
+<h3 id="2.-Connect-to-a-database-and-schema">2. Connect to a database and schema<a class="anchor-link" href="#2.-Connect-to-a-database-and-schema">&#194;&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">with</span> <span class="n">EventContext</span><span class="o">.</span><span class="n">create_database</span><span class="p">(</span><span class="s2">&quot;TESTDB&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ctx</span><span class="p">:</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">with</span> <span class="n">EventContext</span><span class="o">.</span><span class="n">get_event_context</span><span class="p">(</span><span class="s2">&quot;EVENTDB&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ctx</span><span class="p">:</span>
     
     <span class="n">schema</span> <span class="o">=</span> <span class="n">StructType</span><span class="p">([</span>
-        <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;PRODUCT_ID&quot;</span><span class="p">,</span> <span class="n">IntegerType</span><span class="p">(),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
-        <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;PRODUCT_CODE&quot;</span><span class="p">,</span> <span class="n">IntegerType</span><span class="p">(),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
+        <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;PRODUCT_ID&quot;</span><span class="p">,</span> <span class="n">IntegerType</span><span class="p">(),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span>
+        <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;PRODUCT_CODE&quot;</span><span class="p">,</span> <span class="n">IntegerType</span><span class="p">(),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span>
         <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;PRODUCT_DEPT&quot;</span><span class="p">,</span> <span class="n">IntegerType</span><span class="p">(),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
         <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;PRODUCT_LINE&quot;</span><span class="p">,</span> <span class="n">StringType</span><span class="p">(),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
         <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;GENDER&quot;</span><span class="p">,</span> <span class="n">StringType</span><span class="p">(),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
-        <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;AGE&quot;</span><span class="p">,</span> <span class="n">IntegerType</span><span class="p">(),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
+        <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;AGE&quot;</span><span class="p">,</span> <span class="n">IntegerType</span><span class="p">(),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span>
         <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;MARITAL_STATUS&quot;</span><span class="p">,</span> <span class="n">StringType</span><span class="p">(),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
         <span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;PROFESSION&quot;</span><span class="p">,</span> <span class="n">StringType</span><span class="p">(),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="p">])</span>
@@ -11935,108 +11903,6 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>creating table with index...
-TableSchema(tableName=product, schema=StructType(List(StructField(PRODUCT_ID,IntegerType,true),StructField(PRODUCT_CODE,IntegerType,true),StructField(PRODUCT_DEPT,IntegerType,true),StructField(PRODUCT_LINE,StringType,true),StructField(GENDER,StringType,true),StructField(AGE,IntegerType,true),StructField(MARITAL_STATUS,StringType,true),StructField(PROFESSION,StringType,true))), sharding_columns=[&#39;PRODUCT_ID&#39;], pk_columns=[&#39;PRODUCT_ID&#39;, &#39;PRODUCT_CODE&#39;, &#39;AGE&#39;], partition_columns=None)
-list of table names:
-	0: product
-get table: 
-resolved table schema: ResolvedTableSchema(tableName=product, schema=StructType(List(StructField(PRODUCT_ID,IntegerType,true),StructField(PRODUCT_CODE,IntegerType,true),StructField(PRODUCT_DEPT,IntegerType,true),StructField(PRODUCT_LINE,StringType,true),StructField(GENDER,StringType,true),StructField(AGE,IntegerType,true),StructField(MARITAL_STATUS,StringType,true),StructField(PROFESSION,StringType,true))), sharding_columns=[u&#39;PRODUCT_ID&#39;], pk_columns=[u&#39;PRODUCT_ID&#39;, u&#39;PRODUCT_CODE&#39;, u&#39;AGE&#39;], partition_columns=None)
-JVM resolved table schema: ResolvedTableSchema(tableName=product, tableID=0, tableGroupName=sys_product, tableGroupID=0, numShareds=1, schema=StructType(StructField(PRODUCT_ID,IntegerType,true), StructField(PRODUCT_CODE,IntegerType,true), StructField(PRODUCT_DEPT,IntegerType,true), StructField(PRODUCT_LINE,StringType,true), StructField(GENDER,StringType,true), StructField(AGE,IntegerType,true), StructField(MARITAL_STATUS,StringType,true), StructField(PROFESSION,StringType,true)),
-shardingColumns=(PRODUCT_ID),
-pkColumns=(PRODUCT_ID,PRODUCT_CODE,AGE),
-pkIndex=Some(IndexSpecification(indexName=productidx, indexID=Some(0),
-equalColumns=(PRODUCT_ID,PRODUCT_CODE),
-sortColumns=(SortSpecification(AGE,AscendingNullsLast)),
-includeColumns=(PRODUCT_DEPT))),
-indexes=(IndexSpecification(indexName=productidx, indexID=Some(0),
-equalColumns=(PRODUCT_ID,PRODUCT_CODE),
-sortColumns=(SortSpecification(AGE,AscendingNullsLast)),
-includeColumns=(PRODUCT_DEPT))))
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>For IBM Cloud Private for Data installations, run the following cell using <code>EVENTDB</code>.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>ConfigurationReader.setConnectionEndpoints("Copy the appropriate connection URL from the Details page for the database")</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>For IBM Cloud Private for Data installations, run the following cell using <code>EVENTDB</code>.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>with EventContext.get_event_context("EVENTDB") as ctx:</p>
-
-<pre><code>schema = StructType([
-    StructField("PRODUCT_ID", IntegerType(), nullable=True),
-    StructField("PRODUCT_CODE", IntegerType(), nullable=True),
-    StructField("PRODUCT_DEPT", IntegerType(), nullable=True),
-    StructField("PRODUCT_LINE", StringType(), nullable=True),
-    StructField("GENDER", StringType(), nullable=True),
-    StructField("AGE", IntegerType(), nullable=True),
-    StructField("MARITAL_STATUS", StringType(), nullable=True),
-    StructField("PROFESSION", StringType(), nullable=True)
-])
-table_name = "product"
-table_schema = TableSchema(table_name, schema,
-                          sharding_columns=["PRODUCT_ID"],
-                          pk_columns=["PRODUCT_ID", "PRODUCT_CODE", "AGE"])
-index_spec = IndexSpecification(index_name="productidx",
-                                table_schema=table_schema,
-                                equal_columns=["PRODUCT_ID", "PRODUCT_CODE"],
-                                sort_columns=[SortSpecification("AGE", ColumnOrder.ASCENDING_NULLS_LAST)],
-                                include_columns=["PRODUCT_DEPT"])
-
-print("creating table with index...\n{}".format(table_schema))
-ctx.create_table_with_index(table_schema, index_spec)
-print("list of table names:")
-table_names = ctx.get_names_of_tables()
-for idx, name in enumerate(table_names):
-    print("\t{}: {}".format(idx, name))
-
-print("get table: ")
-resolved_table_schema = ctx.get_table(table_name)
-print("resolved table schema: {}".format(resolved_table_schema))
-print("JVM resolved table schema: {}".format(resolved_table_schema.jresolved_table_schema))</code></pre>
-
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
@@ -12049,7 +11915,7 @@ print("JVM resolved table schema: {}".format(resolved_table_schema.jresolved_tab
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">row_batch</span> <span class="o">=</span> <span class="p">[]</span>
@@ -12066,28 +11932,10 @@ print("JVM resolved table schema: {}".format(resolved_table_schema.jresolved_tab
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>20000
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
@@ -12108,23 +11956,14 @@ print("JVM resolved table schema: {}".format(resolved_table_schema.jresolved_tab
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>For stand-alone Db2 Event Store installations, run the following cell using <code>TESTDB</code>.</p>
-
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">sparkSession</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s2">&quot;Event Store ML in Python&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
 
-<span class="n">eventSession</span> <span class="o">=</span> <span class="n">EventSession</span><span class="p">(</span><span class="n">sparkSession</span><span class="o">.</span><span class="n">sparkContext</span><span class="p">,</span> <span class="s2">&quot;TESTDB&quot;</span><span class="p">)</span>
+<span class="n">eventSession</span> <span class="o">=</span> <span class="n">EventSession</span><span class="p">(</span><span class="n">sparkSession</span><span class="o">.</span><span class="n">sparkContext</span><span class="p">,</span> <span class="s2">&quot;EVENTDB&quot;</span><span class="p">)</span>
 <span class="n">eventSession</span><span class="o">.</span><span class="n">set_query_read_option</span><span class="p">(</span><span class="s2">&quot;SnapshotNow&quot;</span><span class="p">)</span>
 </pre></div>
 
@@ -12137,26 +11976,6 @@ print("JVM resolved table schema: {}".format(resolved_table_schema.jresolved_tab
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>For IBM Cloud Private for Data installations, run the following cell using <code>EVENTDB</code>.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>sparkSession = SparkSession.builder.appName("Event Store ML in Python").getOrCreate()</p>
-<p>eventSession = EventSession(sparkSession.sparkContext, "EVENTDB")
-eventSession.set_query_read_option("SnapshotNow")</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="open-database"></a></p>
 <h3 id="5.-Open-Database">5. Open Database<a class="anchor-link" href="#5.-Open-Database">&#194;&#182;</a></h3>
 </div>
@@ -12164,7 +11983,7 @@ eventSession.set_query_read_option("SnapshotNow")</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">eventSession</span><span class="o">.</span><span class="n">open_database</span><span class="p">()</span>
@@ -12184,21 +12003,12 @@ eventSession.set_query_read_option("SnapshotNow")</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>For stand-alone Db2 Event Store installations, run the following cell using <code>TESTDB</code>.</p>
-
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">with</span> <span class="n">EventContext</span><span class="o">.</span><span class="n">get_event_context</span><span class="p">(</span><span class="s2">&quot;TESTDB&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ctx</span><span class="p">:</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">with</span> <span class="n">EventContext</span><span class="o">.</span><span class="n">get_event_context</span><span class="p">(</span><span class="s2">&quot;EVENTDB&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ctx</span><span class="p">:</span>
     <span class="k">print</span><span class="p">(</span><span class="s2">&quot;tables: &quot;</span><span class="p">)</span>
     <span class="n">table_names</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">get_names_of_tables</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">table_names</span><span class="p">):</span>
@@ -12209,47 +12019,6 @@ eventSession.set_query_read_option("SnapshotNow")</p>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>tables: 
-	0: product
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>For IBM Cloud Private for Data installations, run the following cell using <code>EVENTDB</code>.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>with EventContext.get_event_context("EVENTDB") as ctx:
-    print("tables: ")
-    table_names = ctx.get_names_of_tables()
-    for idx, name in enumerate(table_names):
-        print("\t{}: {}".format(idx, name))</p>
-
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
@@ -12262,7 +12031,7 @@ eventSession.set_query_read_option("SnapshotNow")</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">product</span> <span class="o">=</span> <span class="n">eventSession</span><span class="o">.</span><span class="n">load_event_table</span><span class="p">(</span><span class="s2">&quot;product&quot;</span><span class="p">)</span>
@@ -12271,24 +12040,6 @@ eventSession.set_query_read_option("SnapshotNow")</p>
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>product table &lt;class &#39;pyspark.sql.dataframe.DataFrame&#39;&gt;: DataFrame[PRODUCT_ID: int, PRODUCT_CODE: int, PRODUCT_DEPT: int, PRODUCT_LINE: string, GENDER: string, AGE: int, MARITAL_STATUS: string, PROFESSION: string]
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -12304,7 +12055,7 @@ eventSession.set_query_read_option("SnapshotNow")</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;SELECT PRODUCT_LINE, GENDER, AGE, MARITAL_STATUS, PROFESSION FROM product&quot;</span>
@@ -12316,29 +12067,10 @@ eventSession.set_query_read_option("SnapshotNow")</p>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>SELECT PRODUCT_LINE, GENDER, AGE, MARITAL_STATUS, PROFESSION FROM product
-Running query in Event Store...
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">df_data</span><span class="o">.</span><span class="n">printSchema</span><span class="p">()</span>
@@ -12346,46 +12078,6 @@ Running query in Event Store...
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>root
- |-- PRODUCT_LINE: string (nullable = true)
- |-- GENDER: string (nullable = true)
- |-- AGE: integer (nullable = true)
- |-- MARITAL_STATUS: string (nullable = true)
- |-- PROFESSION: string (nullable = true)
-
-+--------------------+------+---+--------------+-----------+
-|        PRODUCT_LINE|GENDER|AGE|MARITAL_STATUS| PROFESSION|
-+--------------------+------+---+--------------+-----------+
-|Personal Accessories|  Male| 30|        Single|Hospitality|
-|   Camping Equipment|Female| 40|        Single|      Sales|
-|      Golf Equipment|  Male| 35|       Married|     Retail|
-|   Mountaineering Eq|Female| 45|       Married|   Engineer|
-|Personal Accessories|  Male| 30|        Single|Hospitality|
-|   Camping Equipment|Female| 40|        Single|      Sales|
-|      Golf Equipment|  Male| 35|       Married|     Retail|
-|   Mountaineering Eq|Female| 45|       Married|   Engineer|
-|Personal Accessories|  Male| 30|        Single|Hospitality|
-|   Camping Equipment|Female| 40|        Single|      Sales|
-+--------------------+------+---+--------------+-----------+
-only showing top 10 rows
-
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -12402,7 +12094,7 @@ only showing top 10 rows
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">splitted_data</span> <span class="o">=</span> <span class="n">df_data</span><span class="o">.</span><span class="n">randomSplit</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">],</span> <span class="mi">24</span><span class="p">)</span>
@@ -12419,30 +12111,10 @@ only showing top 10 rows
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Number of training records: 16066
-Number of testing records : 3543
-Number of prediction records : 391
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">StringIndexer</span><span class="p">,</span> <span class="n">IndexToString</span><span class="p">,</span> <span class="n">VectorAssembler</span>
@@ -12458,7 +12130,7 @@ Number of prediction records : 391
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">stringIndexer_label</span> <span class="o">=</span> <span class="n">StringIndexer</span><span class="p">(</span><span class="n">inputCol</span><span class="o">=</span><span class="s2">&quot;PRODUCT_LINE&quot;</span><span class="p">,</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;label&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span>
@@ -12483,7 +12155,7 @@ Number of prediction records : 391
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">vectorAssembler_features</span> <span class="o">=</span> <span class="n">VectorAssembler</span><span class="p">(</span><span class="n">inputCols</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GENDER_IX&quot;</span><span class="p">,</span> <span class="s2">&quot;AGE&quot;</span><span class="p">,</span> <span class="s2">&quot;MARITAL_STATUS_IX&quot;</span><span class="p">,</span> <span class="s2">&quot;PROFESSION_IX&quot;</span><span class="p">],</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">)</span>
@@ -12496,7 +12168,7 @@ Number of prediction records : 391
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="n">featuresCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">)</span>
@@ -12509,7 +12181,7 @@ Number of prediction records : 391
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">labelConverter</span> <span class="o">=</span> <span class="n">IndexToString</span><span class="p">(</span><span class="n">inputCol</span><span class="o">=</span><span class="s2">&quot;prediction&quot;</span><span class="p">,</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;predictedLabel&quot;</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">stringIndexer_label</span><span class="o">.</span><span class="n">labels</span><span class="p">)</span>
@@ -12522,7 +12194,7 @@ Number of prediction records : 391
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">pipeline_rf</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">stages</span><span class="o">=</span><span class="p">[</span><span class="n">stringIndexer_label</span><span class="p">,</span> <span class="n">stringIndexer_prof</span><span class="p">,</span> <span class="n">stringIndexer_gend</span><span class="p">,</span> <span class="n">stringIndexer_mar</span><span class="p">,</span> <span class="n">vectorAssembler_features</span><span class="p">,</span> <span class="n">rf</span><span class="p">,</span> <span class="n">labelConverter</span><span class="p">])</span>
@@ -12535,7 +12207,7 @@ Number of prediction records : 391
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_data</span><span class="o">.</span><span class="n">printSchema</span><span class="p">()</span>
@@ -12545,34 +12217,10 @@ Number of prediction records : 391
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>root
- |-- PRODUCT_LINE: string (nullable = true)
- |-- GENDER: string (nullable = true)
- |-- AGE: integer (nullable = true)
- |-- MARITAL_STATUS: string (nullable = true)
- |-- PROFESSION: string (nullable = true)
-
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">train_data</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
@@ -12582,28 +12230,10 @@ Number of prediction records : 391
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>16066
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">model_rf</span> <span class="o">=</span> <span class="n">pipeline_rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_data</span><span class="p">)</span>
@@ -12616,7 +12246,7 @@ Number of prediction records : 391
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">model_rf</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
@@ -12627,25 +12257,6 @@ Number of prediction records : 391
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Accuracy = 1
-Test Error = 0
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -12662,7 +12273,7 @@ Test Error = 0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">dsx_ml.ml</span> <span class="kn">import</span> <span class="n">save</span>
@@ -12674,28 +12285,10 @@ Test Error = 0
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>Using TensorFlow backend.
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -12710,28 +12303,10 @@ Test Error = 0
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>https://dsxl-api/v3/project/score/Python27/spark-2.0/dsx-samples/Event%20Store%20Product%20Line%20Prediction%20Model/1
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">model_rf</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">predict_data</span><span class="p">)</span>
@@ -12742,38 +12317,10 @@ Test Error = 0
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>+-----------------+------+---+--------------+----------+-----+-------------+---------+-----------------+------------------+------------------+-----------------+----------+-----------------+
-|     PRODUCT_LINE|GENDER|AGE|MARITAL_STATUS|PROFESSION|label|PROFESSION_IX|GENDER_IX|MARITAL_STATUS_IX|          features|     rawPrediction|      probability|prediction|   predictedLabel|
-+-----------------+------+---+--------------+----------+-----+-------------+---------+-----------------+------------------+------------------+-----------------+----------+-----------------+
-|Camping Equipment|Female| 40|        Single|     Sales|  3.0|          1.0|      1.0|              0.0|[1.0,40.0,0.0,1.0]|[0.0,0.0,0.0,20.0]|[0.0,0.0,0.0,1.0]|       3.0|Camping Equipment|
-|Camping Equipment|Female| 40|        Single|     Sales|  3.0|          1.0|      1.0|              0.0|[1.0,40.0,0.0,1.0]|[0.0,0.0,0.0,20.0]|[0.0,0.0,0.0,1.0]|       3.0|Camping Equipment|
-|Camping Equipment|Female| 40|        Single|     Sales|  3.0|          1.0|      1.0|              0.0|[1.0,40.0,0.0,1.0]|[0.0,0.0,0.0,20.0]|[0.0,0.0,0.0,1.0]|       3.0|Camping Equipment|
-|Camping Equipment|Female| 40|        Single|     Sales|  3.0|          1.0|      1.0|              0.0|[1.0,40.0,0.0,1.0]|[0.0,0.0,0.0,20.0]|[0.0,0.0,0.0,1.0]|       3.0|Camping Equipment|
-|Camping Equipment|Female| 40|        Single|     Sales|  3.0|          1.0|      1.0|              0.0|[1.0,40.0,0.0,1.0]|[0.0,0.0,0.0,20.0]|[0.0,0.0,0.0,1.0]|       3.0|Camping Equipment|
-+-----------------+------+---+--------------+----------+-----+-------------+---------+-----------------+------------------+------------------+-----------------+----------+-----------------+
-only showing top 5 rows
-
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">predictions</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;predictedLabel&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s2">&quot;predictedLabel&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -12783,36 +12330,10 @@ only showing top 5 rows
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>+--------------------+-----+
-|      predictedLabel|count|
-+--------------------+-----+
-|   Mountaineering Eq|  106|
-|   Camping Equipment|  103|
-|      Golf Equipment|   92|
-|Personal Accessories|   90|
-+--------------------+-----+
-
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
@@ -12830,29 +12351,10 @@ only showing top 5 rows
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-<script>requirejs.config({paths: { 'plotly': ['https://cdn.plot.ly/plotly-latest.min']},});if(!window.Plotly) {{require(['plotly'],function(plotly) {window.Plotly=plotly;});}}</script>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">predictions_pdf</span> <span class="o">=</span> <span class="n">predictions</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;prediction&quot;</span><span class="p">,</span> <span class="s2">&quot;predictedLabel&quot;</span><span class="p">,</span> <span class="s2">&quot;GENDER&quot;</span><span class="p">,</span> <span class="s2">&quot;AGE&quot;</span><span class="p">,</span> <span class="s2">&quot;PROFESSION&quot;</span><span class="p">,</span> <span class="s2">&quot;MARITAL_STATUS&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">toPandas</span><span class="p">()</span>
@@ -12865,7 +12367,7 @@ only showing top 5 rows
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">cumulative_stats</span> <span class="o">=</span> <span class="n">predictions_pdf</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;predictedLabel&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
@@ -12887,29 +12389,10 @@ only showing top 5 rows
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-<div id="929054e6-c975-4bb6-9bd0-867e12e1f070" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("929054e6-c975-4bb6-9bd0-867e12e1f070", [{"type": "pie", "labels": ["Camping Equipment", "Golf Equipment", "Mountaineering Eq", "Personal Accessories"], "values": [103, 92, 106, 90]}], {"title": "Predicted product line client interest distribution"}, {"linkText": "Export to plot.ly", "showLink": true})});</script>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">age_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Bar</span><span class="p">(</span>
@@ -12936,25 +12419,6 @@ only showing top 5 rows
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-<div id="82ae9f9a-6045-4ffb-ac38-5a11d42cf991" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("82ae9f9a-6045-4ffb-ac38-5a11d42cf991", [{"y": [40, 35, 45, 30], "x": ["Camping Equipment", "Golf Equipment", "Mountaineering Eq", "Personal Accessories"], "type": "bar"}], {"title": "Mean AGE per predicted product line", "xaxis": {"showline": false, "title": "Product Line"}, "yaxis": {"title": "Mean AGE"}}, {"linkText": "Export to plot.ly", "showLink": true})});</script>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
@@ -12968,7 +12432,7 @@ only showing top 5 rows
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">new_data</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;GENDER&quot;</span> <span class="p">:</span> <span class="s2">&quot;Female&quot;</span><span class="p">,</span> <span class="s2">&quot;AGE&quot;</span> <span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s2">&quot;MARITAL_STATUS&quot;</span> <span class="p">:</span> <span class="s2">&quot;Married&quot;</span><span class="p">,</span> <span class="s2">&quot;PROFESSION&quot;</span> <span class="p">:</span> <span class="s2">&quot;Engineer&quot;</span> <span class="p">}</span>
@@ -12982,28 +12446,10 @@ only showing top 5 rows
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>{&#34;success&#34;:true,&#34;description&#34;:&#34;Success&#34;,&#34;object&#34;:{&#34;error&#34;:&#34;&#34;,&#34;output&#34;:{&#34;classes&#34;:[&#34;Golf Equipment&#34;,&#34;Personal Accessories&#34;,&#34;Mountaineering Eq&#34;,&#34;Camping Equipment&#34;],&#34;predictions&#34;:[&#34;Mountaineering Eq&#34;],&#34;probabilities&#34;:[[0.25,0.1,0.65,0]]},&#34;returnCode&#34;:&#34;0&#34;}}
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">new_data</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;GENDER&quot;</span> <span class="p">:</span> <span class="s2">&quot;Male&quot;</span><span class="p">,</span> <span class="s2">&quot;AGE&quot;</span> <span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s2">&quot;MARITAL_STATUS&quot;</span> <span class="p">:</span> <span class="s2">&quot;Married&quot;</span><span class="p">,</span> <span class="s2">&quot;PROFESSION&quot;</span> <span class="p">:</span> <span class="s2">&quot;Engineer&quot;</span> <span class="p">}</span>
@@ -13014,24 +12460,6 @@ only showing top 5 rows
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>{&#34;success&#34;:true,&#34;description&#34;:&#34;Success&#34;,&#34;object&#34;:{&#34;error&#34;:&#34;&#34;,&#34;output&#34;:{&#34;classes&#34;:[&#34;Golf Equipment&#34;,&#34;Personal Accessories&#34;,&#34;Mountaineering Eq&#34;,&#34;Camping Equipment&#34;],&#34;predictions&#34;:[&#34;Golf Equipment&#34;],&#34;probabilities&#34;:[[0.45,0.1,0.45,0]]},&#34;returnCode&#34;:&#34;0&#34;}}
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
