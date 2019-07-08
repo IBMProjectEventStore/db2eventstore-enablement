@@ -11775,7 +11775,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="IBM-Db2-Event-Store-with-Machine-Learning-&amp;-Model-Deployment-using-Python-API">IBM Db2 Event Store with Machine Learning &amp; Model Deployment using Python API<a class="anchor-link" href="#IBM-Db2-Event-Store-with-Machine-Learning-&amp;-Model-Deployment-using-Python-API">&#194;&#182;</a></h2><p>IBM Db2 Event Store is a hybrid transactional/analytical processing (HTAP) system. It extends the Spark SQL interface to support transactions and accelerate analytics queries. This notebook includes examples of using the Scala client interface to create a database and a table. It also shows how to insert and query data in IBM Db2 Event Store by using Spark SQL. This notebook shows how to build and deploy machine learning model using IBM Db2 Event Store.</p>
+<h2 id="IBM-Db2-Event-Store-with-Machine-Learning-&amp;-Model-Deployment-using-Python-API">IBM Db2 Event Store with Machine Learning &amp; Model Deployment using Python API<a class="anchor-link" href="#IBM-Db2-Event-Store-with-Machine-Learning-&amp;-Model-Deployment-using-Python-API">&#182;</a></h2><p>IBM Db2 Event Store is a hybrid transactional/analytical processing (HTAP) system. It extends the Spark SQL interface to support transactions and accelerate analytics queries. This notebook includes examples of using the Scala client interface to create a database and a table. It also shows how to insert and query data in IBM Db2 Event Store by using Spark SQL. This notebook shows how to build and deploy machine learning model using IBM Db2 Event Store.</p>
 <p>When you finish this demo, you will know how to use Machine Learning and Model Deployment using IBM Db2 Event Store.</p>
 
 </div>
@@ -11785,7 +11785,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Table-of-contents">Table of contents<a class="anchor-link" href="#Table-of-contents">&#194;&#182;</a></h2><ol>
+<h2 id="Table-of-contents">Table of contents<a class="anchor-link" href="#Table-of-contents">&#182;</a></h2><ol>
 <li><a href="#connect-to-es">Connect to IBM Db2 Event Store</a><br></li>
 <li><a href="#define-database">Create a database and schema</a><br></li>
 <li><a href="#generate-insert-data">Generate rows &amp; insert data into Event Store table</a><br></li>
@@ -11824,11 +11824,19 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="connect-to-es"></a></p>
-<h3 id="1.-Setup-connection-to-IBM-Db2-Event-Store">1. Setup connection to IBM Db2 Event Store<a class="anchor-link" href="#1.-Setup-connection-to-IBM-Db2-Event-Store">&#194;&#182;</a></h3><p>To establish a connection to IBM Db2 Event Store, you need to set the connection endpoints. Use the configuration reader to provide a set of APIs for IBM Db2 Event Store connection and configuration.</p>
-<p>You need specify mulitple jdbc as well as connection endpoints by providing a connection string in following format:</p>
-<p><code># ConfigurationReader.setConnectionEndpoints("&lt;ProxyIP&gt;:&lt;JDBCPort&gt;;&lt;HostIP1&gt;:&lt;ConnectionPort1&gt;,&lt;HostIP2&gt;:&lt;ConnectionPort2&gt;,&lt;HostIP3&gt;:&lt;ConnectionPort3&gt;")</code></p>
-<p>For ICP4Data users, you can find connection string in the UI.</p>
-<p>You also need to set the userID and password that will be used to connect to IBM Db2 Event Store instance.</p>
+<h3 id="1.-Set-up-connection-to-IBM-Db2-Event-Store">1. Set up connection to IBM Db2 Event Store<a class="anchor-link" href="#1.-Set-up-connection-to-IBM-Db2-Event-Store">&#182;</a></h3><p>To establish a connection to IBM Db2 Event Store, you need to set the connection endpoints. Use the configuration reader to provide a set of APIs for IBM Db2 Event Store connection and configuration. The configurations need to be set differently, depending on whether the IBM Db2 Event Store is installed with Watson Studio Local (WSL) or IBM Cloud Private for Data (ICP4D).</p>
+<p>For more details on setting up IBM Db2 Event Store connection in Jupyter Notebook, please read the official documentation:
+<a href="https://www.ibm.com/support/knowledgecenter/en/SSGNPV_2.0.0/dsx/jupyter_prereq.html">https://www.ibm.com/support/knowledgecenter/en/SSGNPV_2.0.0/dsx/jupyter_prereq.html</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="For-IBM-Db2-Event-Store-installed-with-Watson-Studio-Local-(WSL)">For IBM Db2 Event Store installed with Watson Studio Local (WSL)<a class="anchor-link" href="#For-IBM-Db2-Event-Store-installed-with-Watson-Studio-Local-(WSL)">&#182;</a></h4><p>If your IBM Db2 Event Store is installed with Watson Studio Local (WSL), you will need to set the userID and password that will be used to connect to IBM Db2 Event Store instance.</p>
+<p>By default, the connection will be estabilished to the IBM Db2 Event Store instance on the current Watson Studio Local cluster.</p>
 
 </div>
 </div>
@@ -11838,10 +11846,10 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Using the configuration reader API, set up the userID and password that will be used to connect to IBM Db2 Event Store.</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Using the configuration reader API, set up the userID and password that </span>
+<span class="c1"># will be used to connect to IBM Db2 Event Store.</span>
 
 <span class="n">ConfigurationReader</span><span class="o">.</span><span class="n">setEventUser</span><span class="p">(</span><span class="s2">&quot;&lt;userid&gt;&quot;</span><span class="p">)</span>
-
 <span class="n">ConfigurationReader</span><span class="o">.</span><span class="n">setEventPassword</span><span class="p">(</span><span class="s2">&quot;&lt;password&gt;&quot;</span><span class="p">)</span>
 </pre></div>
 
@@ -11854,8 +11862,55 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="For-IBM-Db2-Event-Store-installed-with-IBM-Cloud-Private-for-Data-(ICP4D)">For IBM Db2 Event Store installed with IBM Cloud Private for Data (ICP4D)<a class="anchor-link" href="#For-IBM-Db2-Event-Store-installed-with-IBM-Cloud-Private-for-Data-(ICP4D)">&#182;</a></h4><p>If your IBM Db2 Event Store is installed with IBM Cloud Private for Data (ICP4D), you will need to:</p>
+<ol>
+<li><p>Add connection from IBM Cloud Private for Data (ICP4D) to IBM Db2 Event Store.<br>
+For more details on adding connection, please read the official documentation:
+<a href="https://www.ibm.com/support/knowledgecenter/en/SSGNPV_2.0.0/dsx/connect_ICP4D.html">https://www.ibm.com/support/knowledgecenter/en/SSGNPV_2.0.0/dsx/connect_ICP4D.html</a></p>
+</li>
+<li><p>Set the userID and password that will be used to connect to IBM Db2 Event Store instance.</p>
+</li>
+<li>Set the connection endpoint of the target IBM Db2 Event Store instance. The connection endpoint is in the format of <code>&lt;JDBC_CONNECTION_ENDPOINT&gt;;&lt;SCALA_CONNECTION_ENDPOINT&gt;</code>. You can find the <code>&lt;JDBC_CONNECTION_ENDPOINT&gt;</code> and <code>&lt;SCALA_CONNECTION_ENDPOINT&gt;</code> in the <strong>Database details</strong> page in the IBM Cloud Private for Data UI console.  </li>
+</ol>
+<p>For more details on setting up IBM Db2 Event Store connection in Jupyter Notebook, please read the official documentation: <a href="https://www.ibm.com/support/knowledgecenter/en/SSGNPV_2.0.0/dsx/jupyter_prereq.html">https://www.ibm.com/support/knowledgecenter/en/SSGNPV_2.0.0/dsx/jupyter_prereq.html</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">## Note: Only run this cell if your IBM Db2 Event Store is installed with IBM Cloud Private for Data (ICP4D)</span>
+
+<span class="c1"># Using the configuration reader API, set up the userID, password and connection endpoint that </span>
+<span class="c1"># will be used to connect to IBM Db2 Event Store.</span>
+<span class="n">ConfigurationReader</span><span class="o">.</span><span class="n">setConnectionEndpoints</span><span class="p">(</span><span class="s2">&quot;&lt;JDBC_CONNECTION_ENDPOINT&gt;;&lt;SCALA_CONNECTION_ENDPOINT&gt;&quot;</span><span class="p">)</span>
+<span class="n">ConfigurationReader</span><span class="o">.</span><span class="n">setEventUser</span><span class="p">(</span><span class="s2">&quot;&lt;userid&gt;&quot;</span><span class="p">)</span>
+<span class="n">ConfigurationReader</span><span class="o">.</span><span class="n">setEventPassword</span><span class="p">(</span><span class="s2">&quot;&lt;password&gt;&quot;</span><span class="p">)</span>
+
+<span class="c1"># Do not change the following configurations.</span>
+<span class="n">ConfigurationReader</span><span class="o">.</span><span class="n">setSslKeyStoreLocation</span><span class="p">(</span><span class="s2">&quot;/user-home/_global_/security/customer-truststores/cacerts&quot;</span><span class="p">)</span>
+<span class="n">ConfigurationReader</span><span class="o">.</span><span class="n">setSslKeyStorePassword</span><span class="p">(</span><span class="s2">&quot;changeit&quot;</span><span class="p">)</span>
+<span class="n">ConfigurationReader</span><span class="o">.</span><span class="n">setSslTrustStoreLocation</span><span class="p">(</span><span class="s2">&quot;/user-home/_global_/security/customer-truststores/cacerts&quot;</span><span class="p">)</span>
+<span class="n">ConfigurationReader</span><span class="o">.</span><span class="n">setSslTrustStorePassword</span><span class="p">(</span><span class="s2">&quot;changeit&quot;</span><span class="p">)</span>
+<span class="n">ConfigurationReader</span><span class="o">.</span><span class="n">setClientPluginName</span><span class="p">(</span><span class="s2">&quot;IBMIAMauth&quot;</span><span class="p">)</span>
+<span class="n">ConfigurationReader</span><span class="o">.</span><span class="n">setClientPlugin</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">ConfigurationReader</span><span class="o">.</span><span class="n">setSSLEnabled</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="define-database"></a></p>
-<h3 id="2.-Connect-to-a-database-and-schema">2. Connect to a database and schema<a class="anchor-link" href="#2.-Connect-to-a-database-and-schema">&#194;&#182;</a></h3>
+<h3 id="2.-Connect-to-a-database-and-schema">2. Connect to a database and schema<a class="anchor-link" href="#2.-Connect-to-a-database-and-schema">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -11909,7 +11964,7 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="generate-insert-data"></a></p>
-<h3 id="3.-Generate-rows-&amp;-insert-data-into-Event-Store-table">3. Generate rows &amp; insert data into Event Store table<a class="anchor-link" href="#3.-Generate-rows-&amp;-insert-data-into-Event-Store-table">&#194;&#182;</a></h3>
+<h3 id="3.-Generate-rows-&amp;-insert-data-into-Event-Store-table">3. Generate rows &amp; insert data into Event Store table<a class="anchor-link" href="#3.-Generate-rows-&amp;-insert-data-into-Event-Store-table">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -11924,7 +11979,7 @@ div#notebook {
     <span class="n">row_batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">PRODUCT_ID</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">PRODUCT_CODE</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">PRODUCT_DEPT</span><span class="o">=</span><span class="mi">60</span> <span class="p">,</span> <span class="n">PRODUCT_LINE</span><span class="o">=</span><span class="s2">&quot;Camping Equipment&quot;</span> <span class="p">,</span> <span class="n">GENDER</span><span class="o">=</span><span class="s2">&quot;Female&quot;</span><span class="p">,</span> <span class="n">AGE</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">MARITAL_STATUS</span><span class="o">=</span><span class="s2">&quot;Single&quot;</span><span class="p">,</span> <span class="n">PROFESSION</span><span class="o">=</span><span class="s2">&quot;Sales&quot;</span><span class="p">))</span>
     <span class="n">row_batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">PRODUCT_ID</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">PRODUCT_CODE</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">PRODUCT_DEPT</span><span class="o">=</span><span class="mi">70</span> <span class="p">,</span> <span class="n">PRODUCT_LINE</span><span class="o">=</span><span class="s2">&quot;Golf Equipment&quot;</span> <span class="p">,</span> <span class="n">GENDER</span><span class="o">=</span><span class="s2">&quot;Male&quot;</span><span class="p">,</span> <span class="n">AGE</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> <span class="n">MARITAL_STATUS</span><span class="o">=</span><span class="s2">&quot;Married&quot;</span><span class="p">,</span> <span class="n">PROFESSION</span><span class="o">=</span><span class="s2">&quot;Retail&quot;</span><span class="p">))</span>
     <span class="n">row_batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">PRODUCT_ID</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">PRODUCT_CODE</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">PRODUCT_DEPT</span><span class="o">=</span><span class="mi">80</span> <span class="p">,</span> <span class="n">PRODUCT_LINE</span><span class="o">=</span><span class="s2">&quot;Mountaineering Eq&quot;</span> <span class="p">,</span> <span class="n">GENDER</span><span class="o">=</span><span class="s2">&quot;Female&quot;</span><span class="p">,</span> <span class="n">AGE</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">MARITAL_STATUS</span><span class="o">=</span><span class="s2">&quot;Married&quot;</span><span class="p">,</span> <span class="n">PROFESSION</span><span class="o">=</span><span class="s2">&quot;Engineer&quot;</span><span class="p">))</span>
-<span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">row_batch</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">row_batch</span><span class="p">))</span>
 <span class="n">ctx</span><span class="o">.</span><span class="n">batch_insert</span><span class="p">(</span><span class="n">resolved_table_schema</span><span class="p">,</span> <span class="n">row_batch</span><span class="p">)</span>
 </pre></div>
 
@@ -11952,7 +12007,7 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="setup-spark"></a></p>
-<h3 id="4.-Setup-Spark-Context">4. Setup Spark Context<a class="anchor-link" href="#4.-Setup-Spark-Context">&#194;&#182;</a></h3>
+<h3 id="4.-Setup-Spark-Context">4. Setup Spark Context<a class="anchor-link" href="#4.-Setup-Spark-Context">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -11977,7 +12032,7 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="open-database"></a></p>
-<h3 id="5.-Open-Database">5. Open Database<a class="anchor-link" href="#5.-Open-Database">&#194;&#182;</a></h3>
+<h3 id="5.-Open-Database">5. Open Database<a class="anchor-link" href="#5.-Open-Database">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -11999,7 +12054,7 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="get-table-list"></a></p>
-<h3 id="6.-Get-table-list-from-IBM-Db2-Event-Store">6. Get table list from IBM Db2 Event Store<a class="anchor-link" href="#6.-Get-table-list-from-IBM-Db2-Event-Store">&#194;&#182;</a></h3>
+<h3 id="6.-Get-table-list-from-IBM-Db2-Event-Store">6. Get table list from IBM Db2 Event Store<a class="anchor-link" href="#6.-Get-table-list-from-IBM-Db2-Event-Store">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -12025,7 +12080,7 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="load-table"></a></p>
-<h3 id="7.-Load-IBM-Db2-Event-Store-table">7. Load IBM Db2 Event Store table<a class="anchor-link" href="#7.-Load-IBM-Db2-Event-Store-table">&#194;&#182;</a></h3>
+<h3 id="7.-Load-IBM-Db2-Event-Store-table">7. Load IBM Db2 Event Store table<a class="anchor-link" href="#7.-Load-IBM-Db2-Event-Store-table">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -12049,7 +12104,7 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="run-query"></a></p>
-<h3 id="8.-Run-query-on-product-table">8. Run query on product table<a class="anchor-link" href="#8.-Run-query-on-product-table">&#194;&#182;</a></h3>
+<h3 id="8.-Run-query-on-product-table">8. Run query on product table<a class="anchor-link" href="#8.-Run-query-on-product-table">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -12087,7 +12142,7 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="build-model"></a></p>
-<h3 id="9.-Build-Model">9. Build Model<a class="anchor-link" href="#9.-Build-Model">&#194;&#182;</a></h3><p>In the model training process, the original dataset will be split into training dataset and testing dataset.</p>
+<h3 id="9.-Build-Model">9. Build Model<a class="anchor-link" href="#9.-Build-Model">&#182;</a></h3><p>In the model training process, the original dataset will be split into training dataset and testing dataset.</p>
 
 </div>
 </div>
@@ -12102,9 +12157,9 @@ div#notebook {
 <span class="n">test_data</span> <span class="o">=</span> <span class="n">splitted_data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">predict_data</span> <span class="o">=</span> <span class="n">splitted_data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 
-<span class="k">print</span> <span class="s2">&quot;Number of training records: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">train_data</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
-<span class="k">print</span> <span class="s2">&quot;Number of testing records : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">test_data</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
-<span class="k">print</span> <span class="s2">&quot;Number of prediction records : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">predict_data</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Number of training records: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">train_data</span><span class="o">.</span><span class="n">count</span><span class="p">()))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Number of testing records : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">test_data</span><span class="o">.</span><span class="n">count</span><span class="p">()))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Number of prediction records : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">predict_data</span><span class="o">.</span><span class="n">count</span><span class="p">()))</span>
 </pre></div>
 
 </div>
@@ -12223,7 +12278,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">train_data</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">train_data</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
 </pre></div>
 
 </div>
@@ -12266,7 +12321,7 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="save-model"></a></p>
-<h3 id="10.-Save-Model">10. Save Model<a class="anchor-link" href="#10.-Save-Model">&#194;&#182;</a></h3><p>After the model is successfully trained, repository service is used to save the model. The model name and author information can be customized.</p>
+<h3 id="10.-Save-Model">10. Save Model<a class="anchor-link" href="#10.-Save-Model">&#182;</a></h3><p>After the model is successfully trained, repository service is used to save the model. The model name and author information can be customized.</p>
 
 </div>
 </div>
@@ -12425,7 +12480,7 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="make-prediction"></a></p>
-<h3 id="11.-Make-a-prediction">11. Make a prediction<a class="anchor-link" href="#11.-Make-a-prediction">&#194;&#182;</a></h3><p>After deployment, the endpoint of model can be used to give prediction for new data using the online scoring service.</p>
+<h3 id="11.-Make-a-prediction">11. Make a prediction<a class="anchor-link" href="#11.-Make-a-prediction">&#182;</a></h3><p>After deployment, the endpoint of model can be used to give prediction for new data using the online scoring service.</p>
 
 </div>
 </div>
@@ -12469,7 +12524,7 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="summary"></a></p>
-<h2 id="Summary">Summary<a class="anchor-link" href="#Summary">&#194;&#182;</a></h2><p>This demo introduced you to the IBM Db2 Event Store API for Machine Learning and Model Deployment.</p>
+<h2 id="Summary">Summary<a class="anchor-link" href="#Summary">&#182;</a></h2><p>This demo introduced you to the IBM Db2 Event Store API for Machine Learning and Model Deployment.</p>
 
 </div>
 </div>

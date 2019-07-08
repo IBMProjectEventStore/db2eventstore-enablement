@@ -11775,7 +11775,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Introduction-to-IBM-Db2-Event-Store-API">Introduction to IBM Db2 Event Store API<a class="anchor-link" href="#Introduction-to-IBM-Db2-Event-Store-API">&#194;&#182;</a></h1><p>IBM Db2 Event Store is a hybrid transactional/analytical processing (HTAP) system. It extends the Spark SQL interface to support transactions and accelerate analytics queries. This notebook includes examples of using the Scala client interface to create a database and a table. It also shows how to insert and query data in IBM Db2 Event Store by using Spark SQL.</p>
+<h1 id="Introduction-to-IBM-Db2-Event-Store-API">Introduction to IBM Db2 Event Store API<a class="anchor-link" href="#Introduction-to-IBM-Db2-Event-Store-API">&#182;</a></h1><p>IBM Db2 Event Store is a hybrid transactional/analytical processing (HTAP) system. It extends the Spark SQL interface to support transactions and accelerate analytics queries. This notebook includes examples of using the Scala client interface to create a database and a table. It also shows how to insert and query data in IBM Db2 Event Store by using Spark SQL.</p>
 <blockquote><p>When you finish this demo, you will know how to manage and query data using IBM Db2 Event Store.</p>
 </blockquote>
 <p>This notebook runs on Scala 2.10 (and later versions) with Spark.</p>
@@ -11787,7 +11787,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Table-of-contents">Table of contents<a class="anchor-link" href="#Table-of-contents">&#194;&#182;</a></h2><ol>
+<h2 id="Table-of-contents">Table of contents<a class="anchor-link" href="#Table-of-contents">&#182;</a></h2><ol>
 <li><a href="#define-database">Define a database</a><br>
 1.1 <a href="#open-existing-db">Open an existing database</a><br></li>
 <li><a href="#create-table">Create your table</a><br>
@@ -11823,11 +11823,19 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="connect-to-es"></a></p>
-<h3 id="1.-Setup-connection-to-IBM-Db2-Event-Store">1. Setup connection to IBM Db2 Event Store<a class="anchor-link" href="#1.-Setup-connection-to-IBM-Db2-Event-Store">&#194;&#182;</a></h3><p>To establish a connection to IBM Db2 Event Store, you need connection endpoints. Use the configuration reader to provide a set of APIs for IBM Db2 Event Store connection and configuration.</p>
-<p>You need specify mulitple jdbc as well as connection endpoints by providing a connection string in following format:</p>
-<p><code># ConfigurationReader.setConnectionEndpoints("&lt;ProxyIP&gt;:&lt;JDBCPort&gt;;&lt;HostIP1&gt;:&lt;ConnectionPort1&gt;,&lt;HostIP2&gt;:&lt;ConnectionPort2&gt;,&lt;HostIP3&gt;:&lt;ConnectionPort3&gt;")</code></p>
-<p>For ICP4Data users, you can find connection string in the UI.</p>
-<p>You also need to set the userID and password that will be used to connect to IBM Db2 Event Store instance.</p>
+<h3 id="1.-Set-up-connection-to-IBM-Db2-Event-Store">1. Set up connection to IBM Db2 Event Store<a class="anchor-link" href="#1.-Set-up-connection-to-IBM-Db2-Event-Store">&#182;</a></h3><p>To establish a connection to IBM Db2 Event Store, you need to set the connection endpoints. Use the configuration reader to provide a set of APIs for IBM Db2 Event Store connection and configuration. The configurations need to be set differently, depending on whether the IBM Db2 Event Store is installed with Watson Studio Local (WSL) or IBM Cloud Private for Data (ICP4D).</p>
+<p>For more details on setting up IBM Db2 Event Store connection in Jupyter Notebook, please read the official documentation:
+<a href="https://www.ibm.com/support/knowledgecenter/en/SSGNPV_2.0.0/dsx/jupyter_prereq.html">https://www.ibm.com/support/knowledgecenter/en/SSGNPV_2.0.0/dsx/jupyter_prereq.html</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="For-IBM-Db2-Event-Store-installed-with-Watson-Studio-Local-(WSL)">For IBM Db2 Event Store installed with Watson Studio Local (WSL)<a class="anchor-link" href="#For-IBM-Db2-Event-Store-installed-with-Watson-Studio-Local-(WSL)">&#182;</a></h4><p>If your IBM Db2 Event Store is installed with Watson Studio Local (WSL), you will need to set the userID and password that will be used to connect to IBM Db2 Event Store instance.</p>
+<p>By default, the connection will be estabilished to the IBM Db2 Event Store instance on the current Watson Studio Local cluster.</p>
 
 </div>
 </div>
@@ -11837,10 +11845,10 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">// Using the configuration reader API, set up the userID and password that will be used to connect to IBM Db2 Event Store.</span>
+<div class=" highlight hl-scala"><pre><span></span><span class="c1">// Using the configuration reader API, set up the userID and password that </span>
+<span class="c1">// will be used to connect to IBM Db2 Event Store.</span>
 
 <span class="nc">ConfigurationReader</span><span class="o">.</span><span class="n">setEventUser</span><span class="o">(</span><span class="s">&quot;&lt;userid&gt;&quot;</span><span class="o">)</span>
-
 <span class="nc">ConfigurationReader</span><span class="o">.</span><span class="n">setEventPassword</span><span class="o">(</span><span class="s">&quot;&lt;password&gt;&quot;</span><span class="o">)</span>
 </pre></div>
 
@@ -11853,8 +11861,55 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="For-IBM-Db2-Event-Store-installed-with-IBM-Cloud-Private-for-Data-(ICP4D)">For IBM Db2 Event Store installed with IBM Cloud Private for Data (ICP4D)<a class="anchor-link" href="#For-IBM-Db2-Event-Store-installed-with-IBM-Cloud-Private-for-Data-(ICP4D)">&#182;</a></h4><p>If your IBM Db2 Event Store is installed with IBM Cloud Private for Data (ICP4D), you will need to:</p>
+<ol>
+<li><p><strong>Add connection from IBM Cloud Private for Data (ICP4D) to IBM Db2 Event Store</strong><br>
+For more details on adding connection, please read the official documentation:
+<a href="https://www.ibm.com/support/knowledgecenter/en/SSGNPV_2.0.0/dsx/connect_ICP4D.html">https://www.ibm.com/support/knowledgecenter/en/SSGNPV_2.0.0/dsx/connect_ICP4D.html</a></p>
+</li>
+<li><p>Set the userID and password that will be used to connect to IBM Db2 Event Store instance.</p>
+</li>
+<li>Set the connection endpoint of the target IBM Db2 Event Store instance. The connection endpoint is in the format of <code>&lt;JDBC_CONNECTION_ENDPOINT&gt;;&lt;SCALA_CONNECTION_ENDPOINT&gt;</code>. You can find the <code>&lt;JDBC_CONNECTION_ENDPOINT&gt;</code> and <code>&lt;SCALA_CONNECTION_ENDPOINT&gt;</code> in the <strong>Database details</strong> page in the IBM Cloud Private for Data UI console.  </li>
+</ol>
+<p>For more details on setting up IBM Db2 Event Store connection in Jupyter Notebook, please read the official documentation: <a href="https://www.ibm.com/support/knowledgecenter/en/SSGNPV_2.0.0/dsx/jupyter_prereq.html">https://www.ibm.com/support/knowledgecenter/en/SSGNPV_2.0.0/dsx/jupyter_prereq.html</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-scala"><pre><span></span><span class="cm">/* Note: Only run this cell if your IBM Db2 Event Store is installed with IBM Cloud Private for Data (ICP4D) */</span>
+
+<span class="c1">// Using the configuration reader API, set up the userID, password and connection endpoint that </span>
+<span class="c1">// will be used to connect to IBM Db2 Event Store.</span>
+<span class="nc">ConfigurationReader</span><span class="o">.</span><span class="n">setConnectionEndpoints</span><span class="o">(</span><span class="s">&quot;&lt;JDBC_CONNECTION_ENDPOINT&gt;;&lt;SCALA_CONNECTION_ENDPOINT&gt;&quot;</span><span class="o">)</span>
+<span class="nc">ConfigurationReader</span><span class="o">.</span><span class="n">setEventUser</span><span class="o">(</span><span class="s">&quot;&lt;userid&gt;&quot;</span><span class="o">)</span>
+<span class="nc">ConfigurationReader</span><span class="o">.</span><span class="n">setEventPassword</span><span class="o">(</span><span class="s">&quot;&lt;password&gt;&quot;</span><span class="o">)</span>
+
+<span class="c1">// Do not change the following configurations.</span>
+<span class="nc">ConfigurationReader</span><span class="o">.</span><span class="n">setSslKeyStoreLocation</span><span class="o">(</span><span class="s">&quot;/user-home/_global_/security/customer-truststores/cacerts&quot;</span><span class="o">)</span>
+<span class="nc">ConfigurationReader</span><span class="o">.</span><span class="n">setSslKeyStorePassword</span><span class="o">(</span><span class="s">&quot;changeit&quot;</span><span class="o">)</span>
+<span class="nc">ConfigurationReader</span><span class="o">.</span><span class="n">setSslTrustStoreLocation</span><span class="o">(</span><span class="s">&quot;/user-home/_global_/security/customer-truststores/cacerts&quot;</span><span class="o">)</span>
+<span class="nc">ConfigurationReader</span><span class="o">.</span><span class="n">setSslTrustStorePassword</span><span class="o">(</span><span class="s">&quot;changeit&quot;</span><span class="o">)</span>
+<span class="nc">ConfigurationReader</span><span class="o">.</span><span class="n">setClientPluginName</span><span class="o">(</span><span class="s">&quot;IBMIAMauth&quot;</span><span class="o">)</span>
+<span class="nc">ConfigurationReader</span><span class="o">.</span><span class="n">setClientPlugin</span><span class="o">(</span><span class="nc">True</span><span class="o">)</span>
+<span class="nc">ConfigurationReader</span><span class="o">.</span><span class="n">setSSLEnabled</span><span class="o">(</span><span class="nc">True</span><span class="o">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="define-database"></a></p>
-<h2 id="1.-Define-a-database">1. Define a database<a class="anchor-link" href="#1.-Define-a-database">&#194;&#182;</a></h2><p>Only one database can be concurrently active in IBM Db2 Event Store. If you already have a database, you don't need to create one.</p>
+<h2 id="1.-Define-a-database">1. Define a database<a class="anchor-link" href="#1.-Define-a-database">&#182;</a></h2><p>Only one database can be concurrently active in IBM Db2 Event Store. If you already have a database, you don't need to create one.</p>
 
 </div>
 </div>
@@ -11864,7 +11919,7 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="open-existing-db"></a></p>
-<h3 id="1.1-Open-an-existing-database">1.1 Open an existing database<a class="anchor-link" href="#1.1-Open-an-existing-database">&#194;&#182;</a></h3><p>To use an existing database, use the following call:</p>
+<h3 id="1.1-Open-an-existing-database">1.1 Open an existing database<a class="anchor-link" href="#1.1-Open-an-existing-database">&#182;</a></h3><p>To use an existing database, use the following call:</p>
 
 </div>
 </div>
@@ -11888,7 +11943,7 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="create-table"></a></p>
-<h2 id="2.-Create-your-table">2. Create your table<a class="anchor-link" href="#2.-Create-your-table">&#194;&#182;</a></h2>
+<h2 id="2.-Create-your-table">2. Create your table<a class="anchor-link" href="#2.-Create-your-table">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -11897,7 +11952,7 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="define-schema"></a></p>
-<h3 id="2.1-Define-a-schema-for-the-table">2.1 Define a schema for the table<a class="anchor-link" href="#2.1-Define-a-schema-for-the-table">&#194;&#182;</a></h3><p>To create a new table, you must first specify a schema for the table.
+<h3 id="2.1-Define-a-schema-for-the-table">2.1 Define a schema for the table<a class="anchor-link" href="#2.1-Define-a-schema-for-the-table">&#182;</a></h3><p>To create a new table, you must first specify a schema for the table.
 Specify the columns, sharding key, and primary key, as required.</p>
 
 </div>
@@ -11942,7 +11997,7 @@ Specify the columns, sharding key, and primary key, as required.</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="create-table-two"></a></p>
-<h3 id="2.2-Create-the-table">2.2 Create the table<a class="anchor-link" href="#2.2-Create-the-table">&#194;&#182;</a></h3><p>Create the IBM Db2 Event Store table based on the above, unresolved schema.</p>
+<h3 id="2.2-Create-the-table">2.2 Create the table<a class="anchor-link" href="#2.2-Create-the-table">&#182;</a></h3><p>Create the IBM Db2 Event Store table based on the above, unresolved schema.</p>
 
 </div>
 </div>
@@ -11965,7 +12020,7 @@ Specify the columns, sharding key, and primary key, as required.</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="schema-reference"></a></p>
-<h3 id="2.3-Get-a-schema-reference-for-the-resolved-table">2.3 Get a schema reference for the resolved table<a class="anchor-link" href="#2.3-Get-a-schema-reference-for-the-resolved-table">&#194;&#182;</a></h3><p>To perform insert operations, a reference to the resolved table is needed.</p>
+<h3 id="2.3-Get-a-schema-reference-for-the-resolved-table">2.3 Get a schema reference for the resolved table<a class="anchor-link" href="#2.3-Get-a-schema-reference-for-the-resolved-table">&#182;</a></h3><p>To perform insert operations, a reference to the resolved table is needed.</p>
 <p>A resolved table contains additional metadata that is maintained and used by the IBM Db2 Event Store engine.</p>
 
 </div>
@@ -11989,7 +12044,7 @@ Specify the columns, sharding key, and primary key, as required.</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="generate-insert-data"></a></p>
-<h2 id="3.-Generate-and-insert-data-rows">3. Generate and insert data rows<a class="anchor-link" href="#3.-Generate-and-insert-data-rows">&#194;&#182;</a></h2><p>You can insert single-rows of data or perform batch inserts to insert multiple rows of data.
+<h2 id="3.-Generate-and-insert-data-rows">3. Generate and insert data rows<a class="anchor-link" href="#3.-Generate-and-insert-data-rows">&#182;</a></h2><p>You can insert single-rows of data or perform batch inserts to insert multiple rows of data.
 A single row insert can be synchronous or asynchronous. Batch inserts are always performed asynchronously.</p>
 <p>In the example below, random data is generated using a data generator. The data is then sent to the IBM Db2 Event Store engine in a batch, asynchronously.</p>
 
@@ -12051,7 +12106,7 @@ The rows are supplied as an <code>IndexSeq[Row]</code>, where <code>Row</code> i
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="query-table"></a></p>
-<h2 id="4.-Query-the-table">4. Query the table<a class="anchor-link" href="#4.-Query-the-table">&#194;&#182;</a></h2>
+<h2 id="4.-Query-the-table">4. Query the table<a class="anchor-link" href="#4.-Query-the-table">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -12060,7 +12115,7 @@ The rows are supplied as an <code>IndexSeq[Row]</code>, where <code>Row</code> i
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="create-sqlContext"></a></p>
-<h3 id="4.1-Create-sqlContext-using-EventSession">4.1 Create sqlContext using EventSession<a class="anchor-link" href="#4.1-Create-sqlContext-using-EventSession">&#194;&#182;</a></h3><p>To run a Spark SQL query, you need to establish an IBM Db2 Event Store Spark session using sqlContext.</p>
+<h3 id="4.1-Create-sqlContext-using-EventSession">4.1 Create sqlContext using EventSession<a class="anchor-link" href="#4.1-Create-sqlContext-using-EventSession">&#182;</a></h3><p>To run a Spark SQL query, you need to establish an IBM Db2 Event Store Spark session using sqlContext.</p>
 
 </div>
 </div>
@@ -12089,7 +12144,7 @@ The rows are supplied as an <code>IndexSeq[Row]</code>, where <code>Row</code> i
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="prepare-DataFrame"></a></p>
-<h3 id="4.2-Prepare-a-DataFrame-for-the-query">4.2 Prepare a DataFrame for the query<a class="anchor-link" href="#4.2-Prepare-a-DataFrame-for-the-query">&#194;&#182;</a></h3><p>The following API provides a DataFrame that holds the query results on the IBM Db2 Event Store table.</p>
+<h3 id="4.2-Prepare-a-DataFrame-for-the-query">4.2 Prepare a DataFrame for the query<a class="anchor-link" href="#4.2-Prepare-a-DataFrame-for-the-query">&#182;</a></h3><p>The following API provides a DataFrame that holds the query results on the IBM Db2 Event Store table.</p>
 
 </div>
 </div>
@@ -12114,7 +12169,7 @@ The rows are supplied as an <code>IndexSeq[Row]</code>, where <code>Row</code> i
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="run-query"></a></p>
-<h3 id="4.3-Run-the-SQL-query">4.3 Run the SQL query<a class="anchor-link" href="#4.3-Run-the-SQL-query">&#194;&#182;</a></h3><p>Now you can materialize the dataframe associated with the sql query by using either show() or pretty print %%dataframe</p>
+<h3 id="4.3-Run-the-SQL-query">4.3 Run the SQL query<a class="anchor-link" href="#4.3-Run-the-SQL-query">&#182;</a></h3><p>Now you can materialize the dataframe associated with the sql query by using either show() or pretty print %%dataframe</p>
 
 </div>
 </div>
@@ -12150,7 +12205,7 @@ The rows are supplied as an <code>IndexSeq[Row]</code>, where <code>Row</code> i
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="drop-table"></a></p>
-<h2 id="5.-Drop-the-table">5. Drop the table<a class="anchor-link" href="#5.-Drop-the-table">&#194;&#182;</a></h2>
+<h2 id="5.-Drop-the-table">5. Drop the table<a class="anchor-link" href="#5.-Drop-the-table">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -12172,7 +12227,7 @@ The rows are supplied as an <code>IndexSeq[Row]</code>, where <code>Row</code> i
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="summary"></a></p>
-<h2 id="Summary">Summary<a class="anchor-link" href="#Summary">&#194;&#182;</a></h2><p>This demo introduced you to the IBM Db2 Event Store API for managing and querying data.</p>
+<h2 id="Summary">Summary<a class="anchor-link" href="#Summary">&#182;</a></h2><p>This demo introduced you to the IBM Db2 Event Store API for managing and querying data.</p>
 
 </div>
 </div>
@@ -12181,7 +12236,7 @@ The rows are supplied as an <code>IndexSeq[Row]</code>, where <code>Row</code> i
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="References">References<a class="anchor-link" href="#References">&#194;&#182;</a></h2><ul>
+<h2 id="References">References<a class="anchor-link" href="#References">&#182;</a></h2><ul>
 <li><a href="https://www.ibm.com/support/knowledgecenter/SSGNPV">IBM Db2 Event Store documentation</a></li>
 </ul>
 
