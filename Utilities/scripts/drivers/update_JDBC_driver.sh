@@ -56,16 +56,13 @@ do
 done
 
 # get filemgmt pod name, container id,image name
-
 FILEMGMT_POD=`kubectl get po -n "${NAME_SPACE}" | grep filemgmt | awk {'print $1'}`
-
 FILEMGMT_CONTAINER=`kubectl describe po -n "${NAME_SPACE}" "${FILEMGMT_POD}" | grep "Container ID:" | awk {'print $3'} | awk -F 'docker://' '{print $2}'`
-
 FILEMGMT_IMAGE=`kubectl describe po -n "${NAME_SPACE}" "${FILEMGMT_POD}" | grep "Image:" | awk {'print $2'}`
 
 # get NODE_IP where filemgmt pod is located.
-
 NODE_IP=`kubectl describe po -n "${NAME_SPACE}" "${FILEMGMT_POD}" | grep "Node:" | awk {'print $2'} |awk -F '/' '{print $1}'`
+HOST_IP=$(hostname -i | awk {'print $1'})
 
 # copy new db2jcc4.jar into the pod's /dbdrivers dir from user-home pvc
 echo "[Status] Updating JDBC driver..."
@@ -74,7 +71,31 @@ kubectl exec -n "${NAME_SPACE}" -it "${FILEMGMT_POD}" -- bash -c "cp /user-home/
 # commit container to image, and push to registry
 echo "[Status] Updating filemgmt docker image in the registry..."
 ssh -o StrictHostKeyChecking=no root@"${NODE_IP}" "docker commit ${FILEMGMT_CONTAINER} ${FILEMGMT_IMAGE}"
+RES=$?
+if [ $RES -ne 0 ]
+then
+  cat << EOF
+  Error: Unable to execute: 'docker commit ${FILEMGMT_CONTAINER} ${FILEMGMT_IMAGE}' on node ${NODE_IP}.
+  Please make sure:
+    1. Public SSH key of ${HOST_IP} is added to the authorized_keys list on node ${NODE_IP}.
+    2. Docker is installed and functional on node ${NODE_IP}.
+EOF
+  exit 1
+fi
+
 ssh -o StrictHostKeyChecking=no root@"${NODE_IP}" "docker push ${FILEMGMT_IMAGE}"
+RES=$?
+if [ $RES -ne 0 ]
+then
+  cat << EOF
+  Error: Unable to execute: 'docker push ${FILEMGMT_IMAGE}' on node ${NODE_IP}.
+  Please make sure: 
+    1. Public SSH key of ${HOST_IP} is added to the authorized_keys list on node ${NODE_IP}
+    2. Docker is installed and functional on node ${NODE_IP}.
+    3. You have logged in the docker registry: ${FILEMGMT_IMAGE%:*} on node ${NODE_IP}"
+EOF
+  exit 2
+fi
 
 # delete old pod, and wait till new pod is running.
 echo "[Status] Waiting until new driver to take effect..."
