@@ -13203,9 +13203,10 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="For-IBM-Db2-Event-Store-installed-with-IBM-Cloud-Pak-for-Data-(CP4D)">For IBM Db2 Event Store installed with IBM Cloud Pak for Data (CP4D)<a class="anchor-link" href="#For-IBM-Db2-Event-Store-installed-with-IBM-Cloud-Pak-for-Data-(CP4D)">&#182;</a></h4><p>If your IBM Db2 Event Store is installed with IBM Cloud Pak for Data (CP4D), you will need to:</p>
 <ol>
+<li>Link the Event Store Python library to the current Notebook kernel.</li>
+<li>Set the connection endpoint of the target IBM Db2 Event Store instance. The connection endpoint is in the format of <code>&lt;JDBC_CONNECTION_ENDPOINT&gt;;&lt;SCALA_CONNECTION_ENDPOINT&gt;</code>. You can find the <code>&lt;JDBC_CONNECTION_ENDPOINT&gt;</code> and <code>&lt;SCALA_CONNECTION_ENDPOINT&gt;</code> in the <strong>Database details</strong> page of the target IBM Db2 Event Store instance in the IBM Cloud Pak for Data UI console.  </li>
 <li>Set the deployment ID of the target IBM Db2 Event Store instance.</li>
 <li>Set the userID and password that will be used to connect to IBM Db2 Event Store instance.</li>
-<li>Set the connection endpoint of the target IBM Db2 Event Store instance. The connection endpoint is in the format of <code>&lt;JDBC_CONNECTION_ENDPOINT&gt;;&lt;SCALA_CONNECTION_ENDPOINT&gt;</code>. You can find the <code>&lt;JDBC_CONNECTION_ENDPOINT&gt;</code> and <code>&lt;SCALA_CONNECTION_ENDPOINT&gt;</code> in the <strong>Database details</strong> page of the target IBM Db2 Event Store instance in the IBM Cloud Pak for Data UI console.  </li>
 </ol>
 <p>For more details on setting up IBM Db2 Event Store connection in Jupyter Notebook, please read the official documentation: <a href="https://www.ibm.com/support/knowledgecenter/en/SSGNPV_2.0.0/dsx/jupyter_prereq.html">https://www.ibm.com/support/knowledgecenter/en/SSGNPV_2.0.0/dsx/jupyter_prereq.html</a></p>
 
