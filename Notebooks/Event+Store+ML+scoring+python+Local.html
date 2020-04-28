@@ -13144,23 +13144,6 @@ div#notebook {
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">eventstore.oltp</span> <span class="kn">import</span> <span class="n">EventContext</span>
-<span class="kn">from</span> <span class="nn">eventstore.oltp.row_generator</span> <span class="kn">import</span> <span class="n">generate_tele</span>
-<span class="kn">from</span> <span class="nn">eventstore.catalog</span> <span class="kn">import</span> <span class="n">TableSchema</span><span class="p">,</span> <span class="n">IndexSpecification</span><span class="p">,</span> <span class="n">SortSpecification</span><span class="p">,</span> <span class="n">ColumnOrder</span>
-<span class="kn">from</span> <span class="nn">pyspark.sql.types</span> <span class="kn">import</span> <span class="n">StructType</span><span class="p">,</span> <span class="n">StructField</span><span class="p">,</span> <span class="n">IntegerType</span><span class="p">,</span> <span class="n">StringType</span>
-<span class="kn">from</span> <span class="nn">eventstore.common</span> <span class="kn">import</span> <span class="n">ConfigurationReader</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13180,6 +13163,23 @@ div#notebook {
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">eventstore.oltp</span> <span class="kn">import</span> <span class="n">EventContext</span>
+<span class="kn">from</span> <span class="nn">eventstore.oltp.row_generator</span> <span class="kn">import</span> <span class="n">generate_tele</span>
+<span class="kn">from</span> <span class="nn">eventstore.catalog</span> <span class="kn">import</span> <span class="n">TableSchema</span><span class="p">,</span> <span class="n">IndexSpecification</span><span class="p">,</span> <span class="n">SortSpecification</span><span class="p">,</span> <span class="n">ColumnOrder</span>
+<span class="kn">from</span> <span class="nn">pyspark.sql.types</span> <span class="kn">import</span> <span class="n">StructType</span><span class="p">,</span> <span class="n">StructField</span><span class="p">,</span> <span class="n">IntegerType</span><span class="p">,</span> <span class="n">StringType</span>
+<span class="kn">from</span> <span class="nn">eventstore.common</span> <span class="kn">import</span> <span class="n">ConfigurationReader</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -13231,8 +13231,36 @@ div#notebook {
     <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Symlink doesn&#39;t exist, creating symlink to include Event Store Python library...&quot;</span><span class="p">)</span>
 <span class="n">os</span><span class="o">.</span><span class="n">symlink</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Creating symlink to include Event Store Python library...&quot;</span><span class="p">)</span>
+</pre></div>
 
-<span class="c1"># Use the configuration reader API to set up the deploymentID, userID, password, and connection endpoint that </span>
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">eventstore.oltp</span> <span class="kn">import</span> <span class="n">EventContext</span>
+<span class="kn">from</span> <span class="nn">eventstore.oltp.row_generator</span> <span class="kn">import</span> <span class="n">generate_tele</span>
+<span class="kn">from</span> <span class="nn">eventstore.catalog</span> <span class="kn">import</span> <span class="n">TableSchema</span><span class="p">,</span> <span class="n">IndexSpecification</span><span class="p">,</span> <span class="n">SortSpecification</span><span class="p">,</span> <span class="n">ColumnOrder</span>
+<span class="kn">from</span> <span class="nn">pyspark.sql.types</span> <span class="kn">import</span> <span class="n">StructType</span><span class="p">,</span> <span class="n">StructField</span><span class="p">,</span> <span class="n">IntegerType</span><span class="p">,</span> <span class="n">StringType</span>
+<span class="kn">from</span> <span class="nn">eventstore.common</span> <span class="kn">import</span> <span class="n">ConfigurationReader</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Use the configuration reader API to set up the deploymentID, userID, password, and connection endpoint that </span>
 <span class="c1"># will be used to connect to IBM Db2 Event Store.</span>
 <span class="n">ConfigurationReader</span><span class="o">.</span><span class="n">setDeploymentID</span><span class="p">(</span><span class="s2">&quot;&lt;deploymentID&gt;&quot;</span><span class="p">)</span>
 <span class="n">ConfigurationReader</span><span class="o">.</span><span class="n">setConnectionEndpoints</span><span class="p">(</span><span class="s2">&quot;&lt;JDBC_CONNECTION_ENDPOINT&gt;;&lt;SCALA_CONNECTION_ENDPOINT&gt;&quot;</span><span class="p">)</span>
