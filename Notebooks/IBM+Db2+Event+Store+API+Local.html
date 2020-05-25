@@ -13162,7 +13162,7 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="connect-to-es"></a></p>
-<h3 id="1.-Set-up-connection-to-IBM-Db2-Event-Store">1. Set up connection to IBM Db2 Event Store<a class="anchor-link" href="#1.-Set-up-connection-to-IBM-Db2-Event-Store">&#182;</a></h3><p>To establish a connection to IBM Db2 Event Store, you need to set the connection endpoints. Use the configuration reader to provide a set of APIs for IBM Db2 Event Store connection and configuration. The configurations need to be set differently, depending on whether the IBM Db2 Event Store is installed with Watson Studio Local (WSL) or IBM Cloud Pak for Data (CP4D).</p>
+<h3 id="1.-Set-up-connection-to-IBM-Db2-Event-Store">1. Set up connection to IBM Db2 Event Store<a class="anchor-link" href="#1.-Set-up-connection-to-IBM-Db2-Event-Store">&#182;</a></h3><p>To establish a connection to IBM Db2 Event Store, you need to set the connection endpoints. Use the configuration reader to provide a set of APIs for IBM Db2 Event Store connection and configuration.</p>
 <p>For more details on setting up IBM Db2 Event Store connection in Jupyter Notebook, please read the official documentation:
 <a href="https://www.ibm.com/support/knowledgecenter/en/SSGNPV_2.0.0/dsx/jupyter_prereq.html">https://www.ibm.com/support/knowledgecenter/en/SSGNPV_2.0.0/dsx/jupyter_prereq.html</a></p>
 
@@ -13172,37 +13172,11 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="For-IBM-Db2-Event-Store-installed-with-Watson-Studio-Local-(WSL)">For IBM Db2 Event Store installed with Watson Studio Local (WSL)<a class="anchor-link" href="#For-IBM-Db2-Event-Store-installed-with-Watson-Studio-Local-(WSL)">&#182;</a></h4><p>If your IBM Db2 Event Store is installed with Watson Studio Local (WSL), you will need to set the userID and password that will be used to connect to IBM Db2 Event Store instance.</p>
-<p>By default, the connection will be estabilished to the IBM Db2 Event Store instance on the current Watson Studio Local cluster.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">// Using the configuration reader API, set up the userID and password that </span>
-<span class="c1">// will be used to connect to IBM Db2 Event Store.</span>
-
-<span class="nc">ConfigurationReader</span><span class="o">.</span><span class="n">setEventUser</span><span class="o">(</span><span class="s">&quot;&lt;userid&gt;&quot;</span><span class="o">)</span>
-<span class="nc">ConfigurationReader</span><span class="o">.</span><span class="n">setEventPassword</span><span class="o">(</span><span class="s">&quot;&lt;password&gt;&quot;</span><span class="o">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="For-IBM-Db2-Event-Store-installed-with-IBM-Cloud-Pak-for-Data-(CP4D)">For IBM Db2 Event Store installed with IBM Cloud Pak for Data (CP4D)<a class="anchor-link" href="#For-IBM-Db2-Event-Store-installed-with-IBM-Cloud-Pak-for-Data-(CP4D)">&#182;</a></h4><p>If your IBM Db2 Event Store is installed with IBM Cloud Pak for Data (CP4D), you will need to:</p>
+<h4 id="For-IBM-Db2-Event-Store-installed-with-IBM-Cloud-Pak-for-Data-(CP4D)">For IBM Db2 Event Store installed with IBM Cloud Pak for Data (CP4D)<a class="anchor-link" href="#For-IBM-Db2-Event-Store-installed-with-IBM-Cloud-Pak-for-Data-(CP4D)">&#182;</a></h4><p>In your IBM Db2 Event Store installed on IBM Cloud Pak for Data (CP4D), you will need to:</p>
 <ol>
-<li>Set the deployment ID of the target IBM Db2 Event Store instance.</li>
+<li>Set the connection endpoint of the target IBM Db2 Event Store instance. The connection endpoint is in the format of <code>&lt;SCALA_CONNECTION_ENDPOINT&gt;</code>. You can find the <code>&lt;SCALA_CONNECTION_ENDPOINT&gt;</code> in the <strong>Database details</strong> page of the target IBM Db2 Event Store instance in the IBM Cloud Pak for Data UI console.  </li>
+<li>Set the deployment ID of the target IBM Db2 Event Store instance. You can find the <code>&lt;Deployment ID&gt;</code> in the <strong>Database details</strong> page of the target IBM Db2 Event Store instance in the IBM Cloud Pak for Data UI console.</li>
 <li>Set the userID and password that will be used to connect to IBM Db2 Event Store instance.</li>
-<li>Set the connection endpoint of the target IBM Db2 Event Store instance. The connection endpoint is in the format of <code>&lt;JDBC_CONNECTION_ENDPOINT&gt;;&lt;SCALA_CONNECTION_ENDPOINT&gt;</code>. You can find the <code>&lt;JDBC_CONNECTION_ENDPOINT&gt;</code> and <code>&lt;SCALA_CONNECTION_ENDPOINT&gt;</code> in the <strong>Database details</strong> page of the target IBM Db2 Event Store instance in the IBM Cloud Pak for Data UI console.  </li>
 </ol>
 <p>For more details on setting up IBM Db2 Event Store connection in Jupyter Notebook, please read the official documentation: <a href="https://www.ibm.com/support/knowledgecenter/en/SSGNPV_2.0.0/dsx/jupyter_prereq.html">https://www.ibm.com/support/knowledgecenter/en/SSGNPV_2.0.0/dsx/jupyter_prereq.html</a></p>
 
@@ -13219,7 +13193,7 @@ div#notebook {
 <span class="c1">// Use the configuration reader API to set up the deploymentID, userID, password, and connection endpoint that </span>
 <span class="c1">// will be used to connect to IBM Db2 Event Store.</span>
 <span class="nc">ConfigurationReader</span><span class="o">.</span><span class="n">setDeploymentID</span><span class="o">(</span><span class="s">&quot;&lt;deploymentID&gt;&quot;</span><span class="o">)</span>
-<span class="nc">ConfigurationReader</span><span class="o">.</span><span class="n">setConnectionEndpoints</span><span class="o">(</span><span class="s">&quot;&lt;JDBC_CONNECTION_ENDPOINT&gt;;&lt;SCALA_CONNECTION_ENDPOINT&gt;&quot;</span><span class="o">)</span>
+<span class="nc">ConfigurationReader</span><span class="o">.</span><span class="n">setConnectionEndpoints</span><span class="o">(</span><span class="s">&quot;&lt;SCALA_CONNECTION_ENDPOINT&gt;&quot;</span><span class="o">)</span>
 <span class="nc">ConfigurationReader</span><span class="o">.</span><span class="n">setEventUser</span><span class="o">(</span><span class="s">&quot;&lt;userid&gt;&quot;</span><span class="o">)</span>
 <span class="nc">ConfigurationReader</span><span class="o">.</span><span class="n">setEventPassword</span><span class="o">(</span><span class="s">&quot;&lt;password&gt;&quot;</span><span class="o">)</span>
 </pre></div>
