@@ -13123,7 +13123,7 @@ div#notebook {
 </ol>
 </blockquote>
 <p>IBM Db2 Event Store is a hybrid transactional/analytical processing (HTAP) system. It extends the Spark SQL interface to support transactions and accelerate analytics queries. This notebook includes examples of using the Python client interface to create a database and a table. It also shows how to insert and query data in IBM Db2 Event Store by using Spark SQL. This notebook shows how to build and deploy machine learning model using IBM Db2 Event Store.</p>
-<p>When you finish this demo, you will know how to use Machine Learning and Model Deployment using IBM Db2 Event Store.</p>
+<p>When you finish this demo, you will know how to perform Machine Learning task using IBM Db2 Event Store.</p>
 
 </div>
 </div>
@@ -13162,7 +13162,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="For-IBM-Db2-Event-Store-installed-with-IBM-Cloud-Pak-for-Data-(CP4D)">For IBM Db2 Event Store installed with IBM Cloud Pak for Data (CP4D)<a class="anchor-link" href="#For-IBM-Db2-Event-Store-installed-with-IBM-Cloud-Pak-for-Data-(CP4D)">&#182;</a></h4><p>If your IBM Db2 Event Store is installed with IBM Cloud Pak for Data (CP4D), you will need to:</p>
+<h4 id="For-IBM-Db2-Event-Store-installed-with-IBM-Cloud-Pak-for-Data-(CP4D)">For IBM Db2 Event Store installed with IBM Cloud Pak for Data (CP4D)<a class="anchor-link" href="#For-IBM-Db2-Event-Store-installed-with-IBM-Cloud-Pak-for-Data-(CP4D)">&#182;</a></h4><p>In your IBM Db2 Event Store installed on IBM Cloud Pak for Data (CP4D), you will need to:</p>
 <ol>
 <li>Set the connection endpoint of the target IBM Db2 Event Store instance. The connection endpoint is in the format of <code>&lt;SCALA_CONNECTION_ENDPOINT&gt;</code>. You can find the <code>&lt;SCALA_CONNECTION_ENDPOINT&gt;</code> in the <strong>Database details</strong> page of the target IBM Db2 Event Store instance in the IBM Cloud Pak for Data UI console.  </li>
 <li>Set the deployment ID of the target IBM Db2 Event Store instance. You can find the <code>&lt;Deployment ID&gt;</code> in the <strong>Database details</strong> page of the target IBM Db2 Event Store instance in the IBM Cloud Pak for Data UI console.</li>
@@ -13603,207 +13603,6 @@ div#notebook {
 <span class="n">accuracy</span> <span class="o">=</span> <span class="n">evaluatorRF</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Accuracy = </span><span class="si">%g</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">accuracy</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Test Error = </span><span class="si">%g</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><a id="save-model"></a></p>
-<h3 id="10.-Save-Model">10. Save Model<a class="anchor-link" href="#10.-Save-Model">&#182;</a></h3><p>After the model is successfully trained, repository service is used to save the model. The model name and author information can be customized.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">dsx_ml.ml</span> <span class="kn">import</span> <span class="n">save</span>
-<span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;Event Store Product Line Prediction Model&quot;</span>
-<span class="n">saved_model</span> <span class="o">=</span> <span class="n">save</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">model_name</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model_rf</span><span class="p">,</span> <span class="n">test_data</span><span class="o">=</span><span class="n">train_data</span><span class="p">,</span><span class="n">algorithm_type</span><span class="o">=</span><span class="s1">&#39;Classification&#39;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-
-<span class="n">header_online</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span> <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;DSX_TOKEN&#39;</span><span class="p">]}</span>
-
-<span class="k">print</span><span class="p">(</span><span class="n">saved_model</span><span class="p">[</span><span class="s1">&#39;scoring_endpoint&#39;</span><span class="p">])</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">model_rf</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">predict_data</span><span class="p">)</span>
-<span class="n">predictions</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">predictions</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;predictedLabel&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s2">&quot;predictedLabel&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">pandas</span>
-<span class="kn">import</span> <span class="nn">plotly.plotly</span> <span class="kn">as</span> <span class="nn">py</span>
-<span class="kn">from</span> <span class="nn">plotly.offline</span> <span class="kn">import</span> <span class="n">download_plotlyjs</span><span class="p">,</span> <span class="n">init_notebook_mode</span><span class="p">,</span> <span class="n">plot</span><span class="p">,</span> <span class="n">iplot</span>
-<span class="kn">import</span> <span class="nn">cufflinks</span> <span class="kn">as</span> <span class="nn">cf</span>
-<span class="kn">import</span> <span class="nn">plotly.graph_objs</span> <span class="kn">as</span> <span class="nn">go</span>
-<span class="n">init_notebook_mode</span><span class="p">(</span><span class="n">connected</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;HOME&quot;</span><span class="p">]]))</span> 
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">predictions_pdf</span> <span class="o">=</span> <span class="n">predictions</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;prediction&quot;</span><span class="p">,</span> <span class="s2">&quot;predictedLabel&quot;</span><span class="p">,</span> <span class="s2">&quot;GENDER&quot;</span><span class="p">,</span> <span class="s2">&quot;AGE&quot;</span><span class="p">,</span> <span class="s2">&quot;PROFESSION&quot;</span><span class="p">,</span> <span class="s2">&quot;MARITAL_STATUS&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">toPandas</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">cumulative_stats</span> <span class="o">=</span> <span class="n">predictions_pdf</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;predictedLabel&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
-
-<span class="n">product_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Pie</span><span class="p">(</span>
-            <span class="n">labels</span><span class="o">=</span><span class="n">cumulative_stats</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
-            <span class="n">values</span><span class="o">=</span><span class="n">cumulative_stats</span><span class="p">[</span><span class="s1">&#39;GENDER&#39;</span><span class="p">],</span>
-    <span class="p">)]</span>
-
-<span class="n">product_layout</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Layout</span><span class="p">(</span>
-    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Predicted product line client interest distribution&#39;</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">product_data</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="n">product_layout</span><span class="p">)</span>
-<span class="n">iplot</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">age_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Bar</span><span class="p">(</span>
-            <span class="n">y</span><span class="o">=</span><span class="n">predictions_pdf</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;predictedLabel&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="s2">&quot;AGE&quot;</span><span class="p">],</span>
-            <span class="n">x</span><span class="o">=</span><span class="n">cumulative_stats</span><span class="o">.</span><span class="n">index</span>
-            
-    <span class="p">)]</span>
-
-<span class="n">age_layout</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Layout</span><span class="p">(</span>
-    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Mean AGE per predicted product line&#39;</span><span class="p">,</span>
-    <span class="n">xaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
-        <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Product Line&quot;</span><span class="p">,</span>
-        <span class="n">showline</span><span class="o">=</span><span class="bp">False</span><span class="p">,),</span>
-    <span class="n">yaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
-        <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Mean AGE&quot;</span><span class="p">,</span>
-        <span class="p">),</span>
-<span class="p">)</span>
-
-<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">age_data</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="n">age_layout</span><span class="p">)</span>
-<span class="n">iplot</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><a id="make-prediction"></a></p>
-<h3 id="11.-Make-a-prediction">11. Make a prediction<a class="anchor-link" href="#11.-Make-a-prediction">&#182;</a></h3><p>After deployment, the endpoint of model can be used to give prediction for new data using the online scoring service.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">new_data</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;GENDER&quot;</span> <span class="p">:</span> <span class="s2">&quot;Female&quot;</span><span class="p">,</span> <span class="s2">&quot;AGE&quot;</span> <span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s2">&quot;MARITAL_STATUS&quot;</span> <span class="p">:</span> <span class="s2">&quot;Married&quot;</span><span class="p">,</span> <span class="s2">&quot;PROFESSION&quot;</span> <span class="p">:</span> <span class="s2">&quot;Engineer&quot;</span> <span class="p">}</span>
-<span class="n">payload_scoring</span> <span class="o">=</span> <span class="p">[</span><span class="n">new_data</span><span class="p">]</span>
-<span class="n">scoring_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">saved_model</span><span class="p">[</span><span class="s1">&#39;scoring_endpoint&#39;</span><span class="p">],</span> <span class="n">json</span><span class="o">=</span><span class="n">payload_scoring</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">header_online</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-
-<span class="k">print</span><span class="p">(</span><span class="n">scoring_response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">new_data</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;GENDER&quot;</span> <span class="p">:</span> <span class="s2">&quot;Male&quot;</span><span class="p">,</span> <span class="s2">&quot;AGE&quot;</span> <span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s2">&quot;MARITAL_STATUS&quot;</span> <span class="p">:</span> <span class="s2">&quot;Married&quot;</span><span class="p">,</span> <span class="s2">&quot;PROFESSION&quot;</span> <span class="p">:</span> <span class="s2">&quot;Engineer&quot;</span> <span class="p">}</span>
-<span class="n">payload_scoring</span> <span class="o">=</span> <span class="p">[</span><span class="n">new_data</span><span class="p">]</span>
-<span class="n">scoring_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">saved_model</span><span class="p">[</span><span class="s1">&#39;scoring_endpoint&#39;</span><span class="p">],</span> <span class="n">json</span><span class="o">=</span><span class="n">payload_scoring</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">header_online</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-
-<span class="k">print</span><span class="p">(</span><span class="n">scoring_response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </pre></div>
 
     </div>
